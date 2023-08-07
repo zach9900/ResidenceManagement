@@ -3,7 +3,7 @@ import React from 'react'
 function Dashboard() {
   return (
     <>
-        <button>hello</button>
+        <button>helo</button>
     </>
   )
 }
