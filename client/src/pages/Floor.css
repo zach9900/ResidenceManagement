@@ -1,0 +1,132 @@
+@font-face {
+  font-family: SpaceGrotesk;
+  src: url(../assets/fonts/SpaceGrotesk-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: SevenSegment;
+  src: url(../assets/fonts/Seven\ Segment.ttf);
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.floor-container {
+  display: flex;
+  flex-direction: column;
+  width: 82vw;
+  height: 85vh;
+  padding: 4vh;
+  background-color: #e9ecef;
+  margin-right: 3vh;
+}
+
+.row-container {
+  display: flex;
+  flex: 1.5;
+  justify-content: space-between;
+}
+
+.center-container {
+  display: flex;
+  flex: 5;
+  flex-direction: row;
+  align-items: center;
+  height: 50vh;
+}
+
+.room-duo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.room {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6vw;
+  height: 97%;
+  border: 0.33vh solid #8392ab83;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.room-num {
+  font-family: "SpaceGrotesk";
+  font-weight: 500;
+  font-size: 3vh;
+  color: rgba(31, 33, 36, 0.849);
+}
+
+.facilities-container {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.icon-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    rgba(33, 82, 255, 1) 10%,
+    rgba(33, 212, 253, 1) 100%
+  );
+
+  border-radius: 400px;
+  height: 5vw;
+  width: 5vw;
+}
+
+.icon-image {
+  height: 6.5vw;
+  width: 6.5vw;
+}
+
+.staircase {
+  flex: 1;
+  height: 35vh;
+}
+
+.hilton-num {
+  flex: 5;
+  font-family: "SpaceGrotesk";
+  font-size: 28vh;
+  color: rgba(52, 71, 103, 0.15);
+  cursor: default;
+  user-select: none;
+}
+
+.floor-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: 2px solid rgba(31, 33, 36, 0.849);
+  width: 4.5vw;
+  height: 11vh;
+  font-size: 3vw;
+  font-family: "SevenSegment";
+}
+
+.current-floor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow {
+  width: 6vw;
+  height: 5vw;
+  cursor: pointer;
+}
