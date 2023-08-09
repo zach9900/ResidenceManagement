@@ -1,10 +1,10 @@
 @font-face {
   font-family: SpaceGrotesk;
-  src: url(../assets/fonts/SpaceGrotesk-VariableFont_wght.ttf);
+  src: url(../../assets/fonts/SpaceGrotesk-VariableFont_wght.ttf);
 }
 @font-face {
   font-family: SevenSegment;
-  src: url(../assets/fonts/Seven\ Segment.ttf);
+  src: url(../../assets/fonts/Seven\ Segment.ttf);
 }
 
 .container {
@@ -23,7 +23,6 @@
   height: 85vh;
   padding: 4vh;
   background-color: #e9ecef;
-  margin-right: 3vh;
 }
 
 .row-container {
@@ -47,20 +46,23 @@
 
 .room {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  flex-direction: column;
   width: 6vw;
-  height: 97%;
+  height: 15vh;
   border: 0.33vh solid #8392ab83;
-  border-radius: 5px;
+  border-radius: 0.5vh;
   cursor: pointer;
 }
 
 .room-num {
+  margin: 0 0;
   font-family: "SpaceGrotesk";
   font-weight: 500;
-  font-size: 3vh;
+  font-size: 3vmin;
   color: rgba(31, 33, 36, 0.849);
+  padding-top: 1vh;
 }
 
 .facilities-container {
@@ -83,39 +85,41 @@
   );
 
   border-radius: 400px;
-  height: 5vw;
-  width: 5vw;
+  height: 10vmin;
+  width: 10vmin;
 }
 
 .icon-image {
-  height: 6.5vw;
-  width: 6.5vw;
+  height: 12vmin;
+  width: 12vmin;
+}
+
+.staircase-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  max-height: 50%;
 }
 
 .staircase {
-  flex: 1;
-  height: 35vh;
+  margin-bottom: 0.6vmin;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  transition: 0.4s;
 }
 
 .hilton-num {
+  margin: 0 0;
   flex: 5;
   font-family: "SpaceGrotesk";
-  font-size: 28vh;
+  font-size: 28vmin;
   color: rgba(52, 71, 103, 0.15);
   cursor: default;
   user-select: none;
-}
-
-.floor-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 20px;
-  border: 2px solid rgba(31, 33, 36, 0.849);
-  width: 4.5vw;
-  height: 11vh;
-  font-size: 3vw;
-  font-family: "SevenSegment";
 }
 
 .current-floor {
@@ -123,10 +127,60 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex: 1;
+}
+
+.floor-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1vh;
+  border: 0.33vmin solid rgba(31, 33, 36, 0.849);
+  width: 7.5vmin;
+  height: 11vmin;
+  overflow: hidden;
+}
+
+.floor-nums-container {
+}
+
+.floor-num {
+  font-size: 5.5vmin;
+  font-family: "SevenSegment";
+  margin: 0 0;
+  padding: 0.9vh 0;
 }
 
 .arrow {
-  width: 6vw;
-  height: 5vw;
+  width: 8vmin;
+  height: 8vmin;
   cursor: pointer;
+}
+
+.preview-rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0.55vmin;
+}
+
+.attendent-status {
+  width: 0.75vw;
+  height: 1.5vmin;
+  border-radius: 0.5vmin;
+}
+
+#unattendent {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 102, 124, 1) 20%,
+    rgba(234, 6, 6, 1) 73%
+  );
+}
+#attendent {
+  background: linear-gradient(
+    135deg,
+    rgba(152, 236, 45, 1) 20%,
+    rgba(23, 173, 55, 1) 73%
+  );
 }

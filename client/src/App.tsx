@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Floor from "./pages/Floor";
+import Floor from "./pages/Floor/Floor";
 
 function App() {
   return (

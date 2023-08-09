@@ -1,12 +1,11 @@
 import React from "react";
 import "./Floor.css";
-import RoomsRow from "../components/RoomsRow";
-import Facility from "../components/Facility";
-import showerIcon from "../assets/shower.png";
-import tiglahotIcon from "../assets/tiglahot.png";
-import toiletIcon from "../assets/toilet.png";
-import staircase from "../assets/staircase.png";
-import FloorSlider from "../components/FloorSlider";
+import RoomsRow from "../../components/RoomsRow";
+import Facility from "../../components/Facility";
+import showerIcon from "../../assets/shower.png";
+import tiglahotIcon from "../../assets/tiglahot.png";
+import toiletIcon from "../../assets/toilet.png";
+import FloorSlider from "../../components/FloorSlider";
 
 function Floor() {
   const roomsArr = [
@@ -14,7 +13,6 @@ function Floor() {
   ];
   return (
     <div className="container">
-      <FloorSlider />
       <div className="floor-container">
         <RoomsRow rooms={roomsArr.slice(10, 20)} isTop={true} />
         <div className="center-container">
@@ -24,7 +22,7 @@ function Floor() {
             <Facility icon={toiletIcon} />
           </div>
           <h1 className="hilton-num">192</h1>
-          <img className="staircase" src={staircase} alt="staircase" />
+          <FloorSlider />
         </div>
         <RoomsRow rooms={roomsArr.slice(0, 10).reverse()} isTop={false} />
       </div>
