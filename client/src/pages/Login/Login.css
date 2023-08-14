@@ -16,14 +16,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  user-select: none;
 }
 
 .form-container {
-  width: 60%;
+  width: max-content;
   height: 65%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  margin-left: 9vw;
 }
 
 .header {
@@ -59,7 +61,7 @@
   flex-direction: column;
   align-items: flex-end;
   margin-top: 2vh;
-  width: 60%;
+  width: 100%;
 }
 
 .input-field-label {
@@ -67,13 +69,12 @@
   font-weight: 700;
   margin-bottom: 1vh;
   color: rgb(52, 71, 103);
-  user-select: none;
 }
 
 .input-field {
   display: block;
-  direction: rtl;
-  width: 100%;
+  text-align: right;
+  width: 90%;
   padding: 1.25vmin 1.875vmin;
   font-size: 2vmin;
   font-weight: 400;
@@ -98,7 +99,7 @@
 .login-button {
   color: white;
   cursor: pointer;
-  width: 60%;
+  width: 80%;
   border: 0;
   border-radius: 1vmin;
   box-shadow: 0 0.94vmin 1.63vmin -0.31vmin rgba(0, 0, 0, 0.11),
@@ -114,7 +115,7 @@
   vertical-align: center;
   margin-top: 6vmin;
   transition: all 0.15s ease-in;
-  user-select: none;
+  align-self: center;
 }
 
 .login-button:hover {
@@ -126,12 +127,10 @@
 .bases-container {
   width: 90%;
   height: 10%;
-  /* background: #ddd; */
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  user-select: none;
 }
 
 .base-img {
