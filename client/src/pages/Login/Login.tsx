@@ -1,6 +1,6 @@
 import React from "react";
 import "./Login.css";
-import LoginInputField from "../../components/LoginInputField";
+import InputField from "../../components/InputField";
 import hatserim from "../../assets/bases/hatserim.png";
 import palmahim from "../../assets/bases/palmahim.png";
 import telnof from "../../assets/bases/telnof.png";
@@ -20,7 +20,7 @@ function Login() {
           <h1 className="header">התחברות</h1>
           <h3 className="instructions">הקלד את האימייל והסיסמה כדי להתחבר</h3>
           {inputFields.map((inputField, index) => (
-            <LoginInputField
+            <InputField
               key={index}
               fieldName={inputField}
               inputType={inputFieldsTypes[index]}

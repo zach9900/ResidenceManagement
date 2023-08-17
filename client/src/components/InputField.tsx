@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function LoginInputField({
+function InputField({
   fieldName,
   inputType,
 }: {
@@ -22,4 +22,4 @@ function LoginInputField({
   );
 }
 
-export default LoginInputField;
+export default InputField;
