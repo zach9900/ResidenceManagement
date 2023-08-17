@@ -1,17 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Register.css";
-import LoginInputField from "../../components/LoginInputField";
-import hatserim from "../../assets/bases/hatserim.png";
-import palmahim from "../../assets/bases/palmahim.png";
-import telnof from "../../assets/bases/telnof.png";
-import techni from "../../assets/bases/techni.png";
-import ramon from "../../assets/bases/ramon.png";
+import InputField from "../../components/InputField";
+import Dropdown from "../../components/Dropdown";
+
+import Role from "../../constants/Role.enum";
+import Gender from "../../constants/Gender.enum";
+
+import {
+  getSetFunctionByFieldName,
+  getInputValueByFieldName,
+} from "../../utils/user.util";
+
+import { genderOptions, RoleOptions } from "../../constants/inputOptions";
+import { basesImages } from "../../constants/basesImages";
+import { inputFields, nameFields } from "../../constants/fieldNames";
+import createUserDTO from "../../interfaces/createUserDTO.interface";
 
 function Register() {
-  const nameFields = ["שם משפחה", "שם פרטי"];
-  const inputFields = ["מ.א", "טלפון", "סיסמה"];
-  const inputFieldsTypes = ["text", "tel", "password"];
-  const basesImages = [hatserim, palmahim, telnof, techni, ramon];
+  const [user, setUser] = useState<createUserDTO>({
+    firstname: "",
+    lastname: "",
+    password: "",
+    personalNumber: "",
+    phoneNumber: "",
+    role: Role.Soldier,
+    gender: Gender.male,
+  });
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
   return (
     <div className="container">
       <div className="background-section" />
@@ -19,23 +38,59 @@ function Register() {
       <div className="register-section">
         <div className="form-container">
           <h1 className="header">רישום חייל</h1>
+
           <h3 className="instructions">הזן את פרטי החייל החדש</h3>
+
           <div className="name-inputs">
-            {nameFields.map((inputField, index) => (
-              <LoginInputField
+            {Object.keys(nameFields).map((inputField, index) => (
+              <InputField
                 key={index}
                 fieldName={inputField}
-                inputType={"text"}
+                setValue={getSetFunctionByFieldName(setUser, inputField)}
+                inputValue={getInputValueByFieldName(user, inputField)}
               />
             ))}
           </div>
-          {inputFields.map((inputField, index) => (
-            <LoginInputField
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              paddingBottom: "2vh",
+            }}
+          >
+            <Dropdown
+              label="מין"
+              options={genderOptions}
+              defualtValue={null}
+              setValue={(value: Gender) =>
+                setUser((prev: any) => {
+                  return { ...prev, gender: value };
+                })
+              }
+            />
+
+            <Dropdown
+              label="תפקיד"
+              options={RoleOptions}
+              defualtValue={RoleOptions[0]}
+              setValue={(value: Role) =>
+                setUser((prev: any) => {
+                  return { ...prev, role: value };
+                })
+              }
+            />
+          </div>
+
+          {Object.keys(inputFields).map((inputField, index) => (
+            <InputField
               key={index}
               fieldName={inputField}
-              inputType={inputFieldsTypes[index]}
+              setValue={getSetFunctionByFieldName(setUser, inputField)}
+              inputValue={getInputValueByFieldName(user, inputField)}
             />
           ))}
+
           <button className="register-button">הירשם</button>
         </div>
 

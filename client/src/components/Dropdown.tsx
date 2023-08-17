@@ -1,4 +1,3 @@
-import { log } from "console";
 import React from "react";
 import Select from "react-select";
 
@@ -21,7 +20,9 @@ function Dropdown({
         isSearchable={false}
         defaultValue={defualtValue}
         placeholder={"בחר"}
-        onChange={() => {}}
+        onChange={(e) => {
+          setValue(e?.value);
+        }}
         styles={{
           control: (baseStyles, state) => ({
             ...baseStyles,
