@@ -1,8 +1,11 @@
+require('dotenv').config();
+
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 // start the develop branch
+// starting the server branch
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
@@ -12,6 +15,6 @@ async function bootstrap() {
 
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(5000);
+  await app.listen(process.env.PORT);
 }
 bootstrap();

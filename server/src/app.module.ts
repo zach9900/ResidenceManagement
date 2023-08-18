@@ -6,10 +6,8 @@ import { CourseCommanderModule } from './courseCommander/mvc/courseCommander.mod
   imports: [
     CourseCommanderModule,
     MongooseModule.forRoot(
-      'mongodb+srv://1400tzevet2:1400tzevet2@cluster0.lykctdj.mongodb.net/',
+      process.env.DB_PATH,
     ),
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}
