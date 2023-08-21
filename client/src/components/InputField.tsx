@@ -1,25 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 
-function LoginInputField({
+function InputField({
   fieldName,
-  inputType,
+  inputValue,
+  setValue,
 }: {
   fieldName: string;
-  inputType: string;
+  inputValue: string;
+  setValue: Function;
 }) {
-  const [inputValue, setInputValue] = useState("");
   return (
     <div className="input-field-container">
       <label className="input-field-label">{fieldName}</label>
       <input
         className="input-field"
         value={inputValue}
-        type={inputType}
+        type={fieldName === "סיסמה" ? "password" : "text"}
         placeholder={fieldName}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={(e) => setValue(e.target.value)}
       />
     </div>
   );
 }
 
-export default LoginInputField;
+export default InputField;

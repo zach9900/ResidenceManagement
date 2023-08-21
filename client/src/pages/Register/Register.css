@@ -14,7 +14,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   user-select: none;
 }
@@ -57,7 +57,6 @@
 
 .name-inputs {
   display: flex;
-  flex-direction: row;
   width: 80%;
 }
 
@@ -65,14 +64,14 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-top: 2vh;
+  padding-bottom: 2vh;
   width: 90%;
 }
 
 .input-field-label {
   font-size: 1.5vmin;
   font-weight: 700;
-  margin-bottom: 1vh;
+  padding-bottom: 1vh;
   color: rgb(52, 71, 103);
 }
 
@@ -118,7 +117,7 @@
   font-size: 1.8vmin;
   text-align: center;
   vertical-align: center;
-  margin-top: 5vmin;
+  margin-top: 2vmin;
   transition: all 0.15s ease-in;
 }
 
@@ -138,7 +137,14 @@
 }
 
 .base-img {
-  width: 4vw;
-  height: 4vw;
+  width: 8vmin;
+  height: 8vmin;
   opacity: 0.2;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-left: 2vmin;
 }
