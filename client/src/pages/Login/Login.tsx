@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Login.css";
-import InputField from "../../components/InputField";
 import {
   getSetFunctionByFieldName,
   getInputValueByFieldName,
-} from "../../utils/user.util";
+} from "../../utils/userInput.util";
 import { inputFields } from "../../constants/fieldNames";
 import { basesImages } from "../../constants/basesImages";
 import loginUserDTO from "../../interfaces/loginUserDTO.interface";
+import InputField from "../../components/InputField";
 
 function Login() {
   const [user, setUser] = useState<loginUserDTO>({
@@ -30,7 +30,7 @@ function Login() {
 
           {Object.keys(inputFields).map(
             (inputField, index) =>
-              inputField !== "טלפון" && (
+              (inputField === "מ.א" || inputField === "סיסמה") && (
                 <InputField
                   key={index}
                   fieldName={inputField}
@@ -39,6 +39,7 @@ function Login() {
                 />
               )
           )}
+
           <button className="login-button">התחבר</button>
         </div>
 

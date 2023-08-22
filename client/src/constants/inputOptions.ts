@@ -10,4 +10,16 @@ const genderOptions: Array<{ value: string; label: string }> = [
   { value: "נקבה", label: "נקבה" },
 ];
 
-export { RoleOptions, genderOptions };
+const gafOptions: Array<{ value: string; label: string }> = [
+  { value: "הנדסת מערכות", label: "הנדסת מערכות" },
+  { value: "מסוכ", label: "מסוכ" },
+  { value: "קרב א", label: "קרב א" },
+  { value: "קרב ב", label: "קרב ב" },
+];
+
+const courseOptions: Array<{ value: string; label: string }> = [
+  { value: "1400", label: "1400" },
+  { value: "1233", label: "1233" },
+];
+
+export { RoleOptions, genderOptions, gafOptions, courseOptions };

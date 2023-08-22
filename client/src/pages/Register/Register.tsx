@@ -9,12 +9,17 @@ import Gender from "../../constants/Gender.enum";
 import {
   getSetFunctionByFieldName,
   getInputValueByFieldName,
-} from "../../utils/user.util";
+} from "../../utils/userInput.util";
 
-import { genderOptions, RoleOptions } from "../../constants/inputOptions";
+import {
+  courseOptions,
+  genderOptions,
+  RoleOptions,
+} from "../../constants/inputOptions";
 import { basesImages } from "../../constants/basesImages";
 import { inputFields, nameFields } from "../../constants/fieldNames";
 import createUserDTO from "../../interfaces/createUserDTO.interface";
+import { register } from "../../utils/serverUtils/makas.utils";
 
 function Register() {
   const [user, setUser] = useState<createUserDTO>({
@@ -23,6 +28,8 @@ function Register() {
     password: "",
     personalNumber: "",
     phoneNumber: "",
+    gaf: "",
+    course: "",
     role: Role.Soldier,
     gender: Gender.male,
   });
@@ -40,6 +47,17 @@ function Register() {
           <h1 className="header">רישום חייל</h1>
 
           <h3 className="instructions">הזן את פרטי החייל החדש</h3>
+
+          <Dropdown
+            label="תפקיד"
+            options={RoleOptions}
+            defualtValue={RoleOptions[0]}
+            setValue={(value: Role) =>
+              setUser((prev: any) => {
+                return { ...prev, role: value };
+              })
+            }
+          />
 
           <div className="name-inputs">
             {Object.keys(nameFields).map((inputField, index) => (
@@ -71,12 +89,12 @@ function Register() {
             />
 
             <Dropdown
-              label="תפקיד"
-              options={RoleOptions}
-              defualtValue={RoleOptions[0]}
-              setValue={(value: Role) =>
+              label="מספר קורס"
+              options={courseOptions}
+              defualtValue={null}
+              setValue={(value: string) =>
                 setUser((prev: any) => {
-                  return { ...prev, role: value };
+                  return { ...prev, course: value };
                 })
               }
             />
@@ -91,7 +109,9 @@ function Register() {
             />
           ))}
 
-          <button className="register-button">הירשם</button>
+          <button className="register-button" onClick={() => register(user)}>
+            הירשם
+          </button>
         </div>
 
         <div className="bases-container">

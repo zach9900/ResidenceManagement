@@ -11,6 +11,14 @@ function getInputValueByFieldName(user: any, fieldName: string): string {
       param = user.lastname;
       break;
 
+    case "גף":
+      param = user.gaf;
+      break;
+
+    case "מס קורס":
+      param = user.course;
+      break;
+
     case "טלפון":
       param = user.phoneNumber ?? "";
       break;
