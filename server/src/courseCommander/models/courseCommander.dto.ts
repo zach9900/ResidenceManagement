@@ -20,7 +20,7 @@ export class CourseCommander {
   personalNumber: string;
 
   @ApiProperty({
-    description: 'The name of the  gaf of commander',
+    description: 'The name of the gaf of commander',
     example: 'tikshuv',
   })
   gaf: string;
