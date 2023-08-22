@@ -1,7 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+export type CourseCommanderDocument = CourseCommander & Document;
 
 @Schema()
-export class CourseCommanderDocument {
+export class CourseCommander {
   @Prop()
   firstname: string;
 
@@ -21,6 +24,4 @@ export class CourseCommanderDocument {
   phoneNumber: string;
 }
 
-export const CourseCommanderSchema = SchemaFactory.createForClass(
-  CourseCommanderDocument,
-);
+export const CourseCommanderSchema = SchemaFactory.createForClass(CourseCommander);
