@@ -18,7 +18,21 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@modules/*": ["src/courseCommander/*"]
+      "@modules/*": [
+        "src/courseCommander/mvc/*",
+        "src/floor/mvc/*",
+        "src/hilton/mvc/*",
+        "src/room/mvc/*",
+        "src/soldier/mvc/*"
+      ],
+      "@utils/*": [
+        "src/utils/*",
+        "src/courseCommander/models/*",
+        "src/floor/models/*",
+        "src/hilton/models/*",
+        "src/room/models/*",
+        "src/soldier/models/*",
+      ],
     }
   }
 }
