@@ -12,6 +12,7 @@ import {
 } from "../../utils/userInput.util";
 
 import {
+  courseNumberToGaf,
   courseOptions,
   genderOptions,
   RoleOptions,
@@ -81,9 +82,9 @@ function Register() {
               label="מין"
               options={genderOptions}
               defualtValue={null}
-              setValue={(value: Gender) =>
+              setValue={(gender: Gender) =>
                 setUser((prev: any) => {
-                  return { ...prev, gender: value };
+                  return { ...prev, gender: gender };
                 })
               }
             />
@@ -92,9 +93,13 @@ function Register() {
               label="מספר קורס"
               options={courseOptions}
               defualtValue={null}
-              setValue={(value: string) =>
+              setValue={(course: string) =>
                 setUser((prev: any) => {
-                  return { ...prev, course: value };
+                  return {
+                    ...prev,
+                    course: course,
+                    gaf: courseNumberToGaf[course],
+                  };
                 })
               }
             />

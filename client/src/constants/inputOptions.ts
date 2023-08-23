@@ -10,16 +10,16 @@ const genderOptions: Array<{ value: string; label: string }> = [
   { value: "נקבה", label: "נקבה" },
 ];
 
-const gafOptions: Array<{ value: string; label: string }> = [
-  { value: "הנדסת מערכות", label: "הנדסת מערכות" },
-  { value: "מסוכ", label: "מסוכ" },
-  { value: "קרב א", label: "קרב א" },
-  { value: "קרב ב", label: "קרב ב" },
-];
+const courseNumberToGaf: { [courseNumber: string]: string } = {
+  "1400": "הנדסת מערכות",
+  "1233": "הנדסת מערכות",
+  "1414": "קרב א",
+};
 
 const courseOptions: Array<{ value: string; label: string }> = [
   { value: "1400", label: "1400" },
   { value: "1233", label: "1233" },
+  { value: "1414", label: "1414" },
 ];
 
-export { RoleOptions, genderOptions, gafOptions, courseOptions };
+export { RoleOptions, genderOptions, courseNumberToGaf, courseOptions };
