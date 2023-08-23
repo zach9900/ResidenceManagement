@@ -1,5 +1,5 @@
 enum Role {
-  Makas,
+  courseCommander,
   Soldier,
   Mabas,
   FloorCommander,
