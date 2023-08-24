@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Floor.css";
 import RoomsRow from "../../components/RoomsRow";
 import Facility from "../../components/Facility";
@@ -10,6 +10,10 @@ import Hilton from "../../interfaces/hilton.interface";
 
 function Floor() {
   const [hilton, setHilton] = useState<Hilton>();
+
+  useEffect(() => {
+    console.log("give me hilton");
+  }, []);
   const roomsArr = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   ];

@@ -1,3 +1,4 @@
+import Base from "../constants/Base.enum";
 import Gender from "../constants/Gender.enum";
 import Solider from "./solider.interface";
 
@@ -10,4 +11,5 @@ export default interface courseCommander {
   gaf: string;
   course: string;
   soldiersArray: Array<Solider>;
+  base: Base;
 }
