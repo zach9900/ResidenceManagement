@@ -1,0 +1,8 @@
+{
+  "name": "residencemanagement",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "create:env": "cd server && copy .env.development .env"
+  }
+}
