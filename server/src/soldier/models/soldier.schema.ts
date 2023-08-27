@@ -1,7 +1,7 @@
-import { CourseCommander } from "@utils/courseCommander.schema";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose, { Document } from "mongoose";
-import { Genders } from "src/utils/enums/genders.enum";
+import { Courses, Gafs, Genders } from "@utils/enums";
+import { Base, CourseCommander } from "@utils/schemas";
 
 export type SoldierDocument = Soldier & Document;
 
@@ -19,9 +19,23 @@ export class Soldier {
     @Prop()
     personalNumber: string;
 
-    /*@Prop()
-    personalCommander:CourseCommander
-    */
+    @Prop()
+    course: Courses;
+
+    @Prop()
+    gaf: Gafs;
+
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: CourseCommander.name })
+    personalCommander: CourseCommander;
+
+    @Prop()
+    hiltonNumber: number;
+
+    @Prop()
+    roomNumber: number;
+
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Base.name })
+    base: Base;
 }
 
 export const SoldierSchema = SchemaFactory.createForClass(Soldier);

@@ -1,11 +1,11 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document, ObjectId } from "mongoose";
+import mongoose, { Document } from "mongoose";
+import { Soldier } from "@utils/schemas";
 
 export type RoomDocument = Room & Document;
 
 @Schema()
-export class Room
-{
+export class Room {
     @Prop()
     roomNumber: number;
 
@@ -15,8 +15,8 @@ export class Room
     @Prop()
     freeBeds: number;
     
-    /*@Prop()
-    soldiers: ObjectId*/
+    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: Soldier.name }] })
+    soldiers: Soldier[];
 }
 
 export const RoomSchema = SchemaFactory.createForClass(Room);

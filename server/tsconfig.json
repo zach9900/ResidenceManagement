@@ -27,11 +27,14 @@
       ],
       "@utils/*": [
         "src/utils/*",
+        "src/base/models/*",
         "src/courseCommander/models/*",
         "src/floor/models/*",
         "src/hilton/models/*",
         "src/room/models/*",
         "src/soldier/models/*",
+        "src/commander/models/*",
+        "src/manager/models/*",
       ],
     }
   }
