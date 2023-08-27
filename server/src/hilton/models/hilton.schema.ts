@@ -1,4 +1,4 @@
-import { CourseCommander } from "@modules/models/courseCommander.dto";
+import { CourseCommander } from "@utils/courseCommander.schema";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose, { Document } from "mongoose";
 import { Genders } from "src/utils/enums/genders.enum";
