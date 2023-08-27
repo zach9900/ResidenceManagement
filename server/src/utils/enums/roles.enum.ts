@@ -1,7 +1,7 @@
-export enum Roles
-{
+export enum Roles {
+    Soldier,
     CourseCommander,
-    FloorCommander,
-    BuildingCommander,
-    BasisCommander
+    FloorManager,
+    HiltonManager,
+    BaseCommander
 }
