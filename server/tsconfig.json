@@ -23,7 +23,8 @@
         "src/floor/mvc/*",
         "src/hilton/mvc/*",
         "src/room/mvc/*",
-        "src/soldier/mvc/*"
+        "src/soldier/mvc/*",
+        "src/base"
       ],
       "@utils/*": [
         "src/utils/*",
