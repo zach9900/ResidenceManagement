@@ -1,26 +1,36 @@
-import LatLang from "./LatLang.interface";
+import View from "./View.enum";
+import LatLang from "./interfaces/LatLang.interface";
 import { center, initZoom } from "./mapConst.util";
 
-function onMarkerClick(
+function onBaseClick(
   e: google.maps.MapMouseEvent,
   baseZoomLevel: number,
-  mapInstance: google.maps.Map | undefined
+  basename: string,
+  mapInstance: google.maps.Map | undefined,
+  setView: Function,
+  setBasename: Function
 ) {
+  setBasename(basename);
+  setView(View.BASE);
   const latlang: LatLang | undefined = e.latLng?.toJSON();
 
   setTimeout(function () {
     latlang && mapInstance?.panTo(latlang);
-  }, 50);
+  }, 10);
 
   setTimeout(function () {
     if (mapInstance && mapInstance.getZoom()) {
       const curZoom = mapInstance.getZoom();
-      smoothZoom(mapInstance, baseZoomLevel, curZoom ?? 0, 0.5);
+      smoothZoom(mapInstance, baseZoomLevel, curZoom ?? 0.25, 0.25);
     }
-  }, 600);
+  }, 350);
 }
 
-function resetPosition(mapInstance: google.maps.Map | undefined) {
+function resetPosition(
+  mapInstance: google.maps.Map | undefined,
+  setView: Function
+) {
+  setView(View.IAF);
   mapInstance?.panTo(center);
   mapInstance?.setZoom(initZoom);
 }
@@ -50,8 +60,17 @@ function smoothZoom(
     );
     setTimeout(function () {
       map.setZoom(count);
-    }, 110);
+    }, 70);
   }
 }
 
-export { onMarkerClick, resetPosition };
+function onHiltonClick(hiltonNumber: Number, basename: string) {
+  console.log(
+    "back will never start the work but imagine getting some data of hilton " +
+      hiltonNumber +
+      " at base : " +
+      basename
+  );
+}
+
+export { onBaseClick, onHiltonClick, resetPosition };
