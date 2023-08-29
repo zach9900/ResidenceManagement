@@ -1,6 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { ApiSchema } from '@utils/decorators';
 
-export class CourseCommander {
+@ApiSchema({ name: 'CourseCommander' })
+export class CourseCommanderDto {
   @ApiProperty({
     description: 'The first name of the commander',
     example: 'john',

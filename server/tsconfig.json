@@ -23,15 +23,19 @@
         "src/floor/mvc/*",
         "src/hilton/mvc/*",
         "src/room/mvc/*",
-        "src/soldier/mvc/*"
+        "src/soldier/mvc/*",
+        "src/base"
       ],
       "@utils/*": [
         "src/utils/*",
+        "src/base/models/*",
         "src/courseCommander/models/*",
         "src/floor/models/*",
         "src/hilton/models/*",
         "src/room/models/*",
         "src/soldier/models/*",
+        "src/commander/models/*",
+        "src/manager/models/*",
       ],
     }
   }
