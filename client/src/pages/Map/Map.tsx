@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
-import { bases, mapOptions } from "./map.util/mapConst.util";
+import { bases, initZoom, mapOptions } from "./map.util/mapConst.util";
 import {
   resetPosition,
   onBaseClick,
@@ -8,6 +8,8 @@ import {
 } from "./map.util/mapFunctions.util";
 import BaseMarker from "./map.util/interfaces/BaseMarker.interface";
 import View from "./map.util/View.enum";
+import { basesImages } from "./map.util/basesImages/basesImages";
+import hiltonIcon from "./map.util/basesImages/marker.png";
 
 function Map({
   initView,
@@ -20,6 +22,7 @@ function Map({
   const [view, setView] = useState<View>(initView);
   const [basename, setBasename] = useState<string>(initBasename);
   const [markers, setMarkers] = useState<Array<BaseMarker>>([]);
+  const [zoom, setZoom] = useState<number>(initZoom);
 
   useEffect(() => {
     setMarkers(
@@ -54,6 +57,9 @@ function Map({
     <div>
       {isLoaded && (
         <GoogleMap
+          onZoomChanged={() => {
+            setZoom(mapInstance?.getZoom() ?? 0);
+          }}
           onRightClick={() => resetPosition(mapInstance, setView)}
           onLoad={onMapLoad}
           options={mapOptions}
@@ -62,6 +68,11 @@ function Map({
           {view === View.IAF
             ? markers.map((base) => (
                 <MarkerF
+                  icon={
+                    basesImages.find(
+                      ({ basename, url }) => basename === base.basename
+                    )?.url
+                  }
                   key={JSON.stringify(base.latlang)}
                   position={base.latlang}
                   onClick={(e: google.maps.MapMouseEvent) =>
@@ -76,10 +87,12 @@ function Map({
                   }
                 />
               ))
-            : markers
+            : zoom > 16.5 &&
+              markers
                 .filter((base) => base.basename === basename)[0]
                 .hiltonsMarkers.map((hilton) => (
                   <MarkerF
+                    icon={hiltonIcon}
                     key={JSON.stringify(hilton.latlang)}
                     position={hilton.latlang}
                     onClick={() =>

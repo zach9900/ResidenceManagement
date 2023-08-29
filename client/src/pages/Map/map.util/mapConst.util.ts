@@ -79,7 +79,7 @@ const bases: Array<BaseMarker> = [
     baseZoomLevel: 16.8,
   },
   {
-    basename: "tel nof",
+    basename: "telnof",
     hiltonsMarkers: telNofHiltons,
     latlang: { lat: 31.82593759254736, lng: 34.824971031226035 },
     baseZoomLevel: 17.3,
