@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { CourseCommander } from "@utils/courseCommander.schema"
 import mongoose, { Document } from "mongoose";
 import { Courses, Gafs, Genders } from "@utils/enums";
 import { Base, CourseCommander } from "@utils/schemas";
