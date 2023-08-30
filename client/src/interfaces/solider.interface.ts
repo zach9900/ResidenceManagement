@@ -1,18 +1,16 @@
 import Base from "../constants/Base.enum";
 import Gender from "../constants/Gender.enum";
-import Role from "../constants/Role.enum";
+import courseCommander from "./courseCommander.interface";
 
-interface createUserDTO {
+export default interface Solider {
   firstname: string;
   lastname: string;
   gender: Gender;
+  personalNumber: string;
   gaf: string;
   course: string;
-  role: Role;
-  personalNumber: string;
-  phoneNumber?: string;
-  password?: string;
+  hiltonNumber: number;
+  roomNumber: number;
+  commander: courseCommander;
   base: Base;
 }
-
-export default createUserDTO;

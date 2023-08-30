@@ -12,13 +12,13 @@ const genderOptions: Array<{ value: string; label: string }> = [
 
 const courseNumberToGaf: { [courseNumber: string]: string } = {
   "1400": "הנדסת מערכות",
-  "1233": "הנדסת מערכות",
+  "1264": "הנדסת מערכות",
   "1414": "קרב א",
 };
 
 const courseOptions: Array<{ value: string; label: string }> = [
   { value: "1400", label: "1400" },
-  { value: "1233", label: "1233" },
+  { value: "1264", label: "1264" },
   { value: "1414", label: "1414" },
 ];
 
