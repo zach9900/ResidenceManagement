@@ -95,9 +95,7 @@ function Map({
                     icon={hiltonIcon}
                     key={JSON.stringify(hilton.latlang)}
                     position={hilton.latlang}
-                    onClick={() =>
-                      onHiltonClick(hilton.hiltonNumber, markers[0].basename)
-                    }
+                    onClick={() => onHiltonClick(hilton.hiltonNumber, basename)}
                   />
                 ))}
         </GoogleMap>
