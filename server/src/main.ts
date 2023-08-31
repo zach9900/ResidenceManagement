@@ -13,7 +13,7 @@ async function bootstrap() {
     origin: process.env.CORS_ORIGIN,
   });
 
-  const options = new DocumentBuilder().setTitle('ResidenceManagement').build();
+  const options = new DocumentBuilder().setTitle('Residence Management').build();
 
   const document = SwaggerModule.createDocument(app, options);
 

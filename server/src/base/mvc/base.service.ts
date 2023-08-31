@@ -1,12 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { GetBaseDto } from '@utils/dtos';
 
-type CreateBaseDto = string;
-type UpdateBaseDto = string;
-
 @Injectable()
 export class BaseService {
-  create(createBaseDto: CreateBaseDto) {
+  create(createBaseDto: string) {
     return 'This action adds a new base';
   }
 
@@ -15,10 +12,10 @@ export class BaseService {
   }
 
   findOne(getBase: GetBaseDto) {
-    
+    console.log(getBase); 
   }
 
-  update(id: number, updateBaseDto: UpdateBaseDto) {
+  update(id: number, updateBaseDto: string) {
     return `This action updates a #${id} base`;
   }
 

@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { CourseCommanderDto } from '@utils/dtos';
+import { CourseCommander } from '@utils/schemas';
 import { Model } from 'mongoose';
-import { CourseCommander } from '../models/courseCommander.dto';
 
 @Injectable()
 export class CourseCommanderService {
@@ -10,7 +11,9 @@ export class CourseCommanderService {
     private readonly courseCommanderModel: Model<CourseCommander>,
   ) {}
 
-  async insertCommander(commander: CourseCommander): Promise<CourseCommander> {
+  async insertCommander(
+    commander: CourseCommanderDto,
+  ): Promise<CourseCommander> {
     const newCommander = await new this.courseCommanderModel(commander);
     return newCommander.save();
   }
@@ -27,7 +30,7 @@ export class CourseCommanderService {
 
   async updateOneById(
     personalNumber: string,
-    updateData: Partial<CourseCommander>,
+    updateData: Partial<CourseCommanderDto>,
   ): Promise<CourseCommander> {
     return this.courseCommanderModel
       .findOneAndUpdate({ personalNumber }, updateData, { new: true })

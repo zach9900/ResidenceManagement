@@ -1,16 +1,15 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { BaseService } from '.';
+import { BaseService } from './base.service';
 import { GetBaseDto } from '@utils/dtos';
+import { ApiTags } from '@nestjs/swagger';
 
-type CreateBaseDto = string;
-type UpdateBaseDto = string;
-
+@ApiTags('Base')
 @Controller('base')
 export class BaseController {
   constructor(private readonly baseService: BaseService) {}
 
   @Post()
-  create(@Body() createBaseDto: CreateBaseDto) {
+  create(@Body() createBaseDto: string) {
     return this.baseService.create(createBaseDto);
   }
 
@@ -25,7 +24,7 @@ export class BaseController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBaseDto: UpdateBaseDto) {
+  update(@Param('id') id: string, @Body() updateBaseDto: string) {
     return this.baseService.update(+id, updateBaseDto);
   }
 
