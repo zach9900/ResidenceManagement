@@ -55,6 +55,12 @@
   overflow: hidden;
 }
 
+@media(max-aspect-ratio: 1/1){
+  .background-section{
+    flex: 0;
+  }
+}
+
 .name-inputs {
   display: flex;
   width: 80%;
