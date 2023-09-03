@@ -55,13 +55,8 @@
   overflow: hidden;
 }
 
-<<<<<<< HEAD
 @media (max-aspect-ratio: 1/1) {
   .background-section {
-=======
-@media(max-aspect-ratio: 1/1){
-  .background-section{
->>>>>>> 1afceedf0bceb35488dbb0b5e709dbcc76cda663
     flex: 0;
   }
 }
