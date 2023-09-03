@@ -15,7 +15,7 @@ function FloorCard({ floorNum }: { floorNum: number }) {
           .fill(0)
           .map((val, index, arr) => (
             <p key={index} className="floor-num">
-              {arr.length - index}
+              {arr.length - (index + 1)}
             </p>
           ))}
       </motion.div>
