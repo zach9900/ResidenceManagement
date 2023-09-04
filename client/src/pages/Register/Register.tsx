@@ -21,6 +21,7 @@ import { basesImages } from "../../constants/basesImages";
 import { inputFields, nameFields } from "../../constants/fieldNames";
 import createUserDTO from "../../interfaces/createUserDTO.interface";
 import { register } from "../../utils/serverUtils/makas.utils";
+import Base from "../../constants/Base.enum";
 
 function Register() {
   const [user, setUser] = useState<createUserDTO>({
@@ -33,6 +34,7 @@ function Register() {
     course: "",
     role: Role.Soldier,
     gender: Gender.male,
+    base: Base.techni,
   });
 
   useEffect(() => {
