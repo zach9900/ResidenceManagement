@@ -1,0 +1,59 @@
+@font-face {
+  font-family: Heebo;
+  src: url("../../assets/fonts/Heebo-VariableFont_wght.ttf");
+}
+
+body {
+  font-family: Heebo;
+}
+h2 {
+  margin: 0;
+  font-size: 2.5vmin;
+}
+
+.popup-container {
+  width: 23vw;
+  height: 70vh;
+
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.65);
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  display: flex;
+  position: relative;
+  flex-direction: column;
+
+  padding-top: 2vh;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  direction: rtl;
+  justify-content: space-between;
+  align-items: center;
+  height: 80%;
+  width: 100%;
+}
+
+.building-image {
+  align-self: center;
+  width: 14vw;
+  height: 40vmin;
+  opacity: 0.8;
+}
+
+.info-field {
+  padding: 3vh 0 3vh 0;
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .building-image {
+    width: 0;
+  }
+
+  .info-container {
+    justify-self: center;
+  }
+}

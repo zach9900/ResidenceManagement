@@ -10,6 +10,9 @@ import BaseMarker from "./map.util/interfaces/BaseMarker.interface";
 import View from "./map.util/View.enum";
 import { basesImages } from "./map.util/basesImages/basesImages";
 import hiltonIcon from "./map.util/basesImages/marker.png";
+import Popup from "../../components/hiltonPopup/Popup";
+import HiltonMarker from "./map.util/interfaces/HiltonMarker.interface";
+import { AnimatePresence } from "framer-motion";
 
 function Map({
   initView,
@@ -23,6 +26,10 @@ function Map({
   const [basename, setBasename] = useState<string>(initBasename);
   const [markers, setMarkers] = useState<Array<BaseMarker>>([]);
   const [zoom, setZoom] = useState<number>(initZoom);
+  const [hiltonPopUp, setHiltonPopUp] = useState<HiltonMarker>({
+    hiltonNumber: 0,
+    latlang: { lat: 0, lng: 0 },
+  });
 
   useEffect(() => {
     setMarkers(
@@ -44,6 +51,13 @@ function Map({
       mapInstance?.setZoom(baseZoom);
     }
   }, [mapInstance]);
+  useEffect(() => {
+    console.log(markers);
+  }, [markers]);
+
+  useEffect(() => {
+    console.log(hiltonPopUp);
+  }, [hiltonPopUp]);
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY ?? "",
@@ -96,8 +110,18 @@ function Map({
                     key={JSON.stringify(hilton.latlang)}
                     position={hilton.latlang}
                     onClick={() => onHiltonClick(hilton.hiltonNumber, basename)}
+                    onMouseOver={() => setHiltonPopUp(hilton)}
+                    onMouseOut={() =>
+                      setHiltonPopUp({
+                        hiltonNumber: 0,
+                        latlang: { lat: 0, lng: 0 },
+                      })
+                    }
                   />
                 ))}
+          <AnimatePresence>
+            {hiltonPopUp.hiltonNumber && <Popup hilton={hiltonPopUp} />}
+          </AnimatePresence>
         </GoogleMap>
       )}
     </div>
