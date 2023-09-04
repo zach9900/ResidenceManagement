@@ -48,8 +48,6 @@ function smoothZoom(
       map,
       "zoom_changed",
       function (event: google.maps.MapsEventListener) {
-        console.log(count, rate, max);
-
         smoothZoom(
           map,
           max,

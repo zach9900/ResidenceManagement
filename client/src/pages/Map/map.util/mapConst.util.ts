@@ -69,20 +69,20 @@ const bases: Array<BaseMarker> = [
   {
     basename: "techni",
     hiltonsMarkers: techniHiltons,
-    latlang: { lat: 32.80934031024019, lng: 35.04753959711852 },
-    baseZoomLevel: 16.8,
+    latlang: { lat: 32.81165754658413, lng: 35.04819374892176 },
+    baseZoomLevel: 18.3,
   },
   {
     basename: "ovda",
     hiltonsMarkers: oovdaHiltons,
-    latlang: { lat: 29.9352401438801, lng: 34.95414630356793 },
-    baseZoomLevel: 16.8,
+    latlang: { lat: 29.93145869836534, lng: 34.95390596273884 },
+    baseZoomLevel: 18.3,
   },
   {
     basename: "telnof",
     hiltonsMarkers: telNofHiltons,
-    latlang: { lat: 31.82593759254736, lng: 34.824971031226035 },
-    baseZoomLevel: 17.3,
+    latlang: { lat: 31.826822281559476, lng: 34.824198159548004 },
+    baseZoomLevel: 18.2,
   },
 ];
 
