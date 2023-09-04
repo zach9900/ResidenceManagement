@@ -1,0 +1,66 @@
+@font-face {
+  font-family: Heebo;
+  src: url(../assets/fonts/Heebo-VariableFont_wght.ttf);
+}
+
+.header-text {
+  font-size: 4.3vmin;
+  font-family: "Heebo" !important;
+  font-weight: 600;
+  user-select: none;
+  margin: 0;
+}
+
+.header-room-information {
+  font-size: 1.8vmin;
+  font-family: "Heebo" !important;
+  font-weight: 300;
+  user-select: none;
+  margin: 0;
+}
+
+.box-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 13vw;
+  height: 6vh;
+  direction: rtl;
+  padding: 2vmin;
+  border: 0.4vmin solid;
+  border-color: #b5b5b5;
+  border-radius: 3vmin;
+  user-select: none;
+  background-color: #eee;
+}
+
+.soldier-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.soldier-name {
+  color: black;
+  font-family: "Heebo" !important;
+  font-size: 2.1vmin;
+  font-weight: 500;
+  margin: 0;
+}
+
+.soldier-personal-number {
+  color: black;
+  font-family: "Heebo" !important;
+  font-size: 1.8vmin;
+  font-weight: 300;
+  margin: 0;
+}
+
+.icons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 10vmin;
+}
