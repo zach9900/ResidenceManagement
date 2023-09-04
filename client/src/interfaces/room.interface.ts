@@ -1,6 +1,6 @@
 import Solider from "./solider.interface";
 
-export default interface Room {
+export default interface RoomInteface {
   roomNum: number;
   totalBedsAmount: number;
   occupiedBedsAmount: number;
