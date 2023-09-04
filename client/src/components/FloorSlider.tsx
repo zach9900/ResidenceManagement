@@ -21,7 +21,7 @@ function FloorSlider({
         src={upArrow}
         alt="arrow up"
         style={floorNumber < 2 ? { opacity: 1 } : { opacity: 0.2 }}
-        onClick={() => floorNumber < 3 && incFloor()}
+        onClick={() => floorNumber < 2 && incFloor()}
       />
 
       <FloorCard floorNum={floorNumber} />
