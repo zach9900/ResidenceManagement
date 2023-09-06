@@ -1,51 +1,61 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { GetBaseDto } from '@utils/dtos';
 import { Room } from '@utils/room.schema';
 import { Soldier } from '@utils/soldier.schema';
+import { SoldierService } from '@modules/soldier.service';
+import { UpdateSoldierWithRoomDto } from '@utils/UpdateSoldierWithRoomDto.dto';
+import { UpdateSoldierDto } from '@utils/updateSoldier.dto';
 
-type CreateBaseDto = string;
-type UpdateBaseDto = string;
-
-/*
-  1.Update room by adding new soldier -> return soldier parmeters:soldier and room id
-  2.Update room by removing soldier -> return soldier parameters:soldier and room id
-  3.Get all soldiers in the room -> return soldiers array parameters:
-  4.find soldier by id -> return soldier parameters:soldier id
-*/
 @Injectable()
 export class RoomService {
   constructor(
     @InjectModel('Room')
     private readonly roomModel: Model<Room>,
+    private readonly soldierService: SoldierService,
   ) {}
 
-  async addSoldierToRoom(
-    roomNumber: number,
-    soldierPersonalNumber: String,
-  ): Promise<Room> {
-    //CHANGE THIS FUNC TO BE WITH SOLDIER PERSONAL NUMBER INSTEAD SOLDIER SCHEMA
-    const Room = await this.findRoomByNumber(roomNumber);
-    //Get soldier by presonal number
-    Room.soldiers.push(soldier);
-    //call update soldier room number function
-    return await this.roomModel.updateOne(roomNumber, Room);
+  async addSoldierToRoom(updateDto: UpdateSoldierDto): Promise<Room> {
+    const Room = await this.findRoomByNumber(updateDto.roomNumber);
+    const soldier = await this.soldierService.getSoldierByPersonalNumber(
+      updateDto.soldierPersonalNumber,
+    );
+
+    if (!Room.soldiers.includes(soldier)) {
+      Room.soldiers.push(soldier);
+    }
+    await this.soldierService.updateSoldierWithRoom({
+      soldierPersonalNumber: updateDto.soldierPersonalNumber,
+      updateRoomNumber: updateDto.roomNumber,
+    } as UpdateSoldierWithRoomDto);
+    return await this.roomModel
+      .findOneAndUpdate(
+        { roomNumber: updateDto.roomNumber },
+        { soldiers: Room.soldiers },
+        { new: true },
+      )
+      .exec();
   }
 
-  async removeSoldierFromRoom(
-    roomNumber: number,
-    soldierPersonalNumber: String,
-  ): Promise<Room> {
-    //CHANGE THIS FUNC TO BE WITH SOLDIER PERSONAL NUMBER INSTEAD SOLDIER SCHEMA
-    const Room = await this.findRoomByNumber(roomNumber);
-    //Get soldier by presonal number
-    const soldierIndex = Room.soldiers.indexOf(soldier);
-    if (soldierIndex !== -1) {
-      Room.soldiers.splice(soldierIndex, 1);
-    }
-    //call update soldier room number function
-    return await this.roomModel.updateOne(roomNumber, Room);
+  async removeSoldierFromRoom(updateDto: UpdateSoldierDto): Promise<Room> {
+    const Room = await this.findRoomByNumber(updateDto.roomNumber);
+    const RemovedSoldier = await this.soldierService.getSoldierByPersonalNumber(
+      updateDto.soldierPersonalNumber,
+    );
+    const updatedSoldiers = Room.soldiers.filter(
+      (soldier) => soldier !== RemovedSoldier,
+    );
+    await this.soldierService.updateSoldierWithRoom({
+      soldierPersonalNumber: updateDto.soldierPersonalNumber,
+      updateRoomNumber: NO_ROOM,
+    } as UpdateSoldierWithRoomDto);
+    return await this.roomModel
+      .findOneAndUpdate(
+        { roomNumber: updateDto.roomNumber },
+        { soldiers: updatedSoldiers },
+        { new: true },
+      )
+      .exec();
   }
 
   async getAllSoldiersByRoomId(roomNumber: number): Promise<Soldier[]> {

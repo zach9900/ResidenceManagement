@@ -8,30 +8,45 @@ import {
   Delete,
 } from '@nestjs/common';
 import { RoomService } from '.';
-import { GetBaseDto } from '@utils/dtos';
 import { Soldier } from '@utils/soldier.schema';
+import { UpdateSoldierDto } from '@utils/updateSoldier.dto';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Room } from '@utils/room.schema';
 
-type CreateBaseDto = string;
-type UpdateBaseDto = string;
-
+@ApiTags('courseCommander')
 @Controller('room')
 export class RoomController {
   constructor(private readonly roomService: RoomService) {}
 
-  @Patch('updateSoldierRoom/:roomNumber/:soldierPersonalNumber/:method')
-  updateSoldierRoom(
-    @Param('roomNumber') roomNumber: number,
-    @Param('soldierPersonalNumber') soldierPersonalNumber: string,
-    @Param('method') method: string,
-  ) {
-    return this.roomService.updateSoldierRoom(
-      roomNumber,
-      soldierPersonalNumber,
-      method,
+  @ApiOperation({
+    summary: 'add a soldier into specific room',
+  })
+  @ApiResponse({ status: 200, description: 'Successful operation' })
+  @Patch('addSoldierRoom')
+  addSoldierToRoom(@Body() updateSoldierDto: UpdateSoldierDto): Promise<Room> {
+    return this.roomService.addSoldierToRoom(
+      updateSoldierDto.roomNumber,
+      updateSoldierDto.soldierPersonalNumber,
     );
   }
 
-  @Get('allSoldiers')
+  @ApiOperation({
+    summary: 'remove soldier from specific room',
+  })
+  @ApiResponse({ status: 200, description: 'Successful operation' })
+  @Patch('removeSoldierRoom')
+  removeSoldierFromRoom(
+    @Body() updateSoldierDto: UpdateSoldierDto,
+  ): Promise<Room> {
+    return this.roomService.removeSoldierFromRoom(
+      updateSoldierDto.roomNumber,
+      updateSoldierDto.soldierPersonalNumber,
+    );
+  }
+
+  @ApiOperation({ summary: 'returns all the soldiers in specific room' })
+  @ApiResponse({ status: 200, description: 'Successful operation' })
+  @Get('allSoldiers/:roomNumber')
   async findAll(@Param('roomNumber') roomNumber: number): Promise<Soldier[]> {
     return await this.roomService.getAllSoldiersByRoomId(roomNumber);
   }
