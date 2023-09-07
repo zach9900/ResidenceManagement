@@ -10,7 +10,7 @@ import View from "./pages/Map/map.util/View.enum";
 function App() {
   return (
     <div className="App">
-      <Map initView={View.IAF} initBasename="" />
+      <Map initView={View.BASE} initBasename="techni" />
       {/*<Floor />*/}
     </div>
   );

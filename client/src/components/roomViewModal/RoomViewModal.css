@@ -19,6 +19,12 @@
   margin: 0;
 }
 
+.warning-icon {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
 .box-container {
   display: flex;
   flex-direction: row;

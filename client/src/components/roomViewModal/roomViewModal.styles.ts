@@ -18,7 +18,7 @@ export default {
     },
   },
   headerContainer: {
-    width: "94%",
+    width: "97.5%",
     height: "9%",
     display: "flex",
     flexDirection: "row",
@@ -36,6 +36,10 @@ export default {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+  },
+  warningIconContainer: {
+    width: "4vmin",
+    height: "4vmin",
   },
   seperatingLine: {
     width: "100%",

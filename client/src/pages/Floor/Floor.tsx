@@ -29,6 +29,7 @@ function Floor({
     roomNum: 0,
     soldiersArray: [],
     totalBedsAmount: 0,
+    failuresArray: [],
   });
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -40,6 +41,7 @@ function Floor({
           roomNum: 0,
           soldiersArray: [],
           totalBedsAmount: 0,
+          failuresArray: [],
         });
       }, 150);
   }, [isModalOpen]);

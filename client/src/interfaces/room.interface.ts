@@ -5,4 +5,5 @@ export default interface RoomInteface {
   totalBedsAmount: number;
   occupiedBedsAmount: number;
   soldiersArray: Array<Solider>;
+  failuresArray: Array<string>;
 }

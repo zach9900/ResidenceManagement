@@ -1,0 +1,22 @@
+.popup-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-triangle {
+  width: 0;
+  height: 0;
+  border-left: 2vmin solid transparent;
+  border-right: 2vmin solid transparent;
+  border-bottom: 2vmin solid grey;
+}
+
+.popup-body {
+  width: 9vw;
+  height: 19vh;
+  background-color: grey;
+  border-radius: 0.75vmin;
+}

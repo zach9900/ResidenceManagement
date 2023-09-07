@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -10,6 +10,7 @@ import RoomEmptySpot from "../RoomEmptySpot";
 import "./RoomViewModal.css";
 import RoomInteface from "../../interfaces/room.interface";
 import styles from "./roomViewModal.styles";
+import warningIcon from "../../assets/warning.png";
 
 export default function RoomViewModal({
   isOpen,
@@ -24,6 +25,8 @@ export default function RoomViewModal({
   floorNum: number;
   roomData: RoomInteface;
 }) {
+  const [failureHovered, setFailureHovered] = useState<boolean>(false);
+
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -51,7 +54,17 @@ export default function RoomViewModal({
               <p className="header-text">{`חדר ${roomData.roomNum}`}</p>
               <p className="header-room-information">{`הילטון ${hiltonNum} קומה ${floorNum}`}</p>
             </Box>
-            <Box></Box>
+            <Box sx={styles.warningIconContainer}>
+              {roomData.failuresArray.length && (
+                <img
+                  className="warning-icon"
+                  src={warningIcon}
+                  alt="warningIcon"
+                  onMouseEnter={() => setFailureHovered(true)}
+                  onMouseLeave={() => setFailureHovered(false)}
+                />
+              )}
+            </Box>
           </Box>
 
           <Box sx={styles.seperatingLine}></Box>
