@@ -4,7 +4,7 @@ import { ApiSchema } from '@utils/decorators';
 import { Courses, Gafs, Genders, Roles } from '@utils/enums';
 import { Bases } from '@utils/enums/bases.enum';
 
-@ApiSchema({ name: 'AddSoldierDto' })
+@ApiSchema({ name: 'AddSoldier' })
 export class AddSoldierDto {
   @ApiProperty({
     description: 'The first name of the soldier',

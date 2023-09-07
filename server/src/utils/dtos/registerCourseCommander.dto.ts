@@ -4,7 +4,7 @@ import { ApiSchema } from '@utils/decorators';
 import { Courses, Gafs, Genders, Roles } from '@utils/enums';
 import { Bases } from '@utils/enums/bases.enum';
 
-@ApiSchema({ name: 'AddCourseCommanderDto' })
+@ApiSchema({ name: 'AddCourseCommander' })
 export class AddCourseCommanderDto {
   @ApiProperty({
     description: 'The first name of the Coursecommander',

@@ -13,7 +13,7 @@ import { UpdateSoldierDto } from '@utils/updateSoldier.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Room } from '@utils/room.schema';
 
-@ApiTags('courseCommander')
+@ApiTags('Room')
 @Controller('room')
 export class RoomController {
   constructor(private readonly roomService: RoomService) {}
@@ -24,10 +24,7 @@ export class RoomController {
   @ApiResponse({ status: 200, description: 'Successful operation' })
   @Patch('addSoldierRoom')
   addSoldierToRoom(@Body() updateSoldierDto: UpdateSoldierDto): Promise<Room> {
-    return this.roomService.addSoldierToRoom(
-      updateSoldierDto.roomNumber,
-      updateSoldierDto.soldierPersonalNumber,
-    );
+    return this.roomService.addSoldierToRoom(updateSoldierDto);
   }
 
   @ApiOperation({
@@ -38,10 +35,7 @@ export class RoomController {
   removeSoldierFromRoom(
     @Body() updateSoldierDto: UpdateSoldierDto,
   ): Promise<Room> {
-    return this.roomService.removeSoldierFromRoom(
-      updateSoldierDto.roomNumber,
-      updateSoldierDto.soldierPersonalNumber,
-    );
+    return this.roomService.removeSoldierFromRoom(updateSoldierDto);
   }
 
   @ApiOperation({ summary: 'returns all the soldiers in specific room' })

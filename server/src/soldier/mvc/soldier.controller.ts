@@ -9,12 +9,13 @@ import {
 } from '@nestjs/common';
 import { SoldierService } from '.';
 import { Soldier } from '@utils/soldier.schema';
-import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AddSoldierDto } from '@utils/dtos/registerSoldier.dto';
 import { UpdateSoldierWithCommanderDto } from '@utils/updateSoldierWithCommander.dto';
 import { UpdateSoldierWithHiltonDto } from '@utils/updateSoldierWithHiltonDto.dto';
 import { UpdateSoldierWithRoomDto } from '@utils/UpdateSoldierWithRoomDto.dto';
 
+@ApiTags('Soldier')
 @Controller('soldier')
 export class SoldierController {
   constructor(private readonly soldierService: SoldierService) {}

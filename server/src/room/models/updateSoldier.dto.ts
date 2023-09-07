@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { ApiSchema } from '@utils/decorators';
 
-@ApiSchema({ name: 'UpdateSoldierDto' })
+@ApiSchema({ name: 'UpdateSoldier' })
 export class UpdateSoldierDto {
   @ApiProperty({
     description: 'The number of the room',
