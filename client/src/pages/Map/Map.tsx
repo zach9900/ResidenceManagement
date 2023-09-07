@@ -4,7 +4,7 @@ import { bases, initZoom, mapOptions } from "./map.util/mapConst.util";
 import {
   resetPosition,
   onBaseClick,
-  onHiltonClick,
+  getHiltonData,
 } from "./map.util/mapFunctions.util";
 import BaseMarker from "./map.util/interfaces/BaseMarker.interface";
 import View from "./map.util/View.enum";
@@ -13,6 +13,9 @@ import hiltonIcon from "./map.util/basesImages/marker.png";
 import Popup from "../../components/hiltonPopup/Popup";
 import HiltonMarker from "./map.util/interfaces/HiltonMarker.interface";
 import { AnimatePresence } from "framer-motion";
+import Floor from "../Floor/Floor";
+import Hilton from "../../interfaces/hilton.interface";
+import { emptyHilton } from "../../constants/mock/Hilton.mock";
 
 function Map({
   initView,
@@ -26,10 +29,12 @@ function Map({
   const [basename, setBasename] = useState<string>(initBasename);
   const [markers, setMarkers] = useState<Array<BaseMarker>>([]);
   const [zoom, setZoom] = useState<number>(initZoom);
-  const [hiltonPopUp, setHiltonPopUp] = useState<HiltonMarker>({
-    hiltonNumber: 0,
-    latlang: { lat: 0, lng: 0 },
-  });
+  const [hiltonPopUp, setHiltonPopUp] = useState<Hilton>(emptyHilton);
+  const [hiltonPressed, setHiltonPressed] = useState<Hilton>(emptyHilton);
+
+  useEffect(() => {
+    console.log(hiltonPressed);
+  }, [hiltonPressed]);
 
   useEffect(() => {
     setMarkers(
@@ -51,13 +56,6 @@ function Map({
       mapInstance?.setZoom(baseZoom);
     }
   }, [mapInstance]);
-  useEffect(() => {
-    console.log(markers);
-  }, [markers]);
-
-  useEffect(() => {
-    console.log(hiltonPopUp);
-  }, [hiltonPopUp]);
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY ?? "",
@@ -66,6 +64,15 @@ function Map({
   const onMapLoad = useCallback((map: google.maps.Map) => {
     setMapInstance(map);
   }, []);
+
+  function onHiltonClick(hilton: HiltonMarker, basename: string) {
+    setHiltonPopUp(emptyHilton);
+    setHiltonPressed(getHiltonData(hilton.hiltonNumber, basename));
+  }
+
+  function closeFloorPage() {
+    setHiltonPressed(emptyHilton);
+  }
 
   return (
     <div>
@@ -109,18 +116,23 @@ function Map({
                     icon={hiltonIcon}
                     key={JSON.stringify(hilton.latlang)}
                     position={hilton.latlang}
-                    onClick={() => onHiltonClick(hilton.hiltonNumber, basename)}
-                    onMouseOver={() => setHiltonPopUp(hilton)}
-                    onMouseOut={() =>
-                      setHiltonPopUp({
-                        hiltonNumber: 0,
-                        latlang: { lat: 0, lng: 0 },
-                      })
+                    onClick={() => onHiltonClick(hilton, basename)}
+                    onMouseOver={() =>
+                      setHiltonPopUp(
+                        getHiltonData(hilton.hiltonNumber, basename)
+                      )
                     }
+                    onMouseOut={() => setHiltonPopUp(emptyHilton)}
                   />
                 ))}
           <AnimatePresence>
             {hiltonPopUp.hiltonNumber && <Popup hilton={hiltonPopUp} />}
+            {hiltonPressed.hiltonNumber && (
+              <Floor
+                initHilton={hiltonPressed}
+                closeFloorPage={closeFloorPage}
+              />
+            )}
           </AnimatePresence>
         </GoogleMap>
       )}

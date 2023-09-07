@@ -7,12 +7,42 @@ import tiglahotIcon from "../../assets/tiglahot.png";
 import toiletIcon from "../../assets/toilet.png";
 import FloorSlider from "../../components/FloorSlider";
 import Hilton from "../../interfaces/hilton.interface";
-import mockHilton from "../../constants/mock/Hilton.mock";
 import FloorInterface from "../../interfaces/floor.interface";
+import RoomInteface from "../../interfaces/room.interface";
+import RoomViewModal from "../../components/roomViewModal/RoomViewModal";
+import { motion } from "framer-motion";
+import { Button } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { closeFloorPageButton } from "./Floor.styles";
 
-function Floor() {
-  const [hilton, setHilton] = useState<Hilton>(mockHilton);
+function Floor({
+  initHilton,
+  closeFloorPage,
+}: {
+  initHilton: Hilton;
+  closeFloorPage: Function;
+}) {
+  const [hilton, setHilton] = useState<Hilton>(initHilton);
   const [floor, setFloor] = useState<FloorInterface>(hilton.floors[0]);
+  const [pressedRoom, setPressedRoom] = useState<RoomInteface>({
+    occupiedBedsAmount: 0,
+    roomNum: 0,
+    soldiersArray: [],
+    totalBedsAmount: 0,
+  });
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    isModalOpen === false &&
+      setTimeout(() => {
+        setPressedRoom({
+          occupiedBedsAmount: 0,
+          roomNum: 0,
+          soldiersArray: [],
+          totalBedsAmount: 0,
+        });
+      }, 150);
+  }, [isModalOpen]);
 
   function incFloor() {
     setFloor((prev) => hilton.floors[prev.floorNum + 1]);
@@ -22,29 +52,63 @@ function Floor() {
     setFloor((prev) => hilton.floors[prev.floorNum - 1]);
   }
 
-  useEffect(() => {
-    console.log(floor.roomsArray);
-  }, [floor]);
+  function setRoom(room: RoomInteface) {
+    setPressedRoom(room);
+    setIsModalOpen(true);
+  }
+
   return (
-    <div className="container">
-      <div className="floor-container">
-        <RoomsRow rooms={floor.roomsArray.slice(10)} />
-        <div className="center-container">
-          <div className="facilities-container">
-            <Facility icon={showerIcon} />
-            <Facility icon={tiglahotIcon} />
-            <Facility icon={toiletIcon} />
+    <motion.div
+      className="container"
+      initial={{ opacity: 0.4 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+      exit={{ opacity: 0 }}
+      style={{ y: 0 }}
+      onClick={() => closeFloorPage()}
+    >
+      <div
+        className="floor-container"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <Button sx={closeFloorPageButton} onClick={() => closeFloorPage()}>
+          <CloseIcon />
+        </Button>
+
+        <div style={{ padding: "0vh 0vh 2vh 3vh" }}>
+          <RoomsRow rooms={floor.roomsArray.slice(10)} onRoomClick={setRoom} />
+          <div className="center-container">
+            <div className="facilities-container">
+              <Facility icon={showerIcon} />
+              <Facility icon={tiglahotIcon} />
+              <Facility icon={toiletIcon} />
+            </div>
+            <h1 className="hilton-num">{hilton.hiltonNumber}</h1>
+            <FloorSlider
+              floorNumber={floor.floorNum}
+              incFloor={incFloor}
+              decFloor={decFloor}
+            />
           </div>
-          <h1 className="hilton-num">192</h1>
-          <FloorSlider
-            floorNumber={floor.floorNum}
-            incFloor={incFloor}
-            decFloor={decFloor}
+          <RoomsRow
+            rooms={floor.roomsArray.slice(0, 10).reverse()}
+            onRoomClick={setRoom}
           />
         </div>
-        <RoomsRow rooms={floor.roomsArray.slice(0, 10).reverse()} />
       </div>
-    </div>
+
+      <RoomViewModal
+        isOpen={isModalOpen}
+        closeModal={() => {
+          setIsModalOpen(false);
+        }}
+        hiltonNum={hilton.hiltonNumber}
+        floorNum={floor.floorNum}
+        roomData={pressedRoom}
+      />
+    </motion.div>
   );
 }
 

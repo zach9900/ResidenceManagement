@@ -37,6 +37,10 @@ h2 {
   width: 100%;
 }
 
+.headline {
+  text-decoration: underline;
+}
+
 .building-image {
   align-self: center;
   width: 14vw;

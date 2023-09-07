@@ -2,9 +2,9 @@ import React from "react";
 import "../pages/Floor/Floor.css";
 import RoomInteface from "../interfaces/room.interface";
 
-function Room({ room }: { room: RoomInteface }) {
+function Room({ room, onClick }: { room: RoomInteface; onClick: Function }) {
   return (
-    <div onClick={() => console.log(room)} className="room">
+    <div onClick={() => onClick(room)} className="room">
       <h5 className="room-num">{room.roomNum}</h5>
       <div className="preview-rooms-grid">
         {new Array(room.totalBedsAmount)

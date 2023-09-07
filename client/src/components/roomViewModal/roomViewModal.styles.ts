@@ -1,0 +1,56 @@
+export default {
+  container: {
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    width: "60vw",
+    height: "60vh",
+    transform: "translate(-50%, -50%)",
+    background: "ghostwhite",
+    boxShadow: 24,
+    borderRadius: "2vmin",
+    overflow: "hidden",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+    "&:focus": {
+      border: 0,
+    },
+  },
+  headerContainer: {
+    width: "94%",
+    height: "9%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  closeButton: {
+    color: "black",
+    "&:hover": {
+      color: "red",
+    },
+  },
+  roomDetails: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  seperatingLine: {
+    width: "100%",
+    height: "0.2vmin",
+    backgroundColor: "#ccc",
+    alignSelf: "center",
+  },
+  soldiersContainer: {
+    width: "95%",
+    height: "70%",
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gridTemplateRows: "repeat(3, 1fr)",
+    gap: "0.55vmin",
+    gridAutoFlow: "column",
+    direction: "rtl",
+  },
+};

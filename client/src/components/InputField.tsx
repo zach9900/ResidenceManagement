@@ -18,6 +18,7 @@ function InputField({
         type={fieldName === "סיסמה" ? "password" : "text"}
         placeholder={fieldName}
         onChange={(e) => setValue(e.target.value)}
+        maxLength={fieldName === "מ.א" ? 7 : undefined}
       />
     </div>
   );

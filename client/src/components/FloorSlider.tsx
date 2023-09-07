@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import FloorCard from "./FloorCard";
 import upArrow from "../assets/upArrow.png";
 import downArrow from "../assets/downArrow.png";
@@ -12,8 +12,6 @@ function FloorSlider({
   incFloor: Function;
   decFloor: Function;
 }) {
-  console.log(floorNumber);
-
   return (
     <div className="current-floor">
       <img

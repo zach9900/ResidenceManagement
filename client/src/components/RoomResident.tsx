@@ -8,7 +8,7 @@ export default function RoomResident({
   personalNumber,
 }: {
   fullName: string;
-  personalNumber: number;
+  personalNumber: string;
 }) {
   return (
     <div className="box-container">

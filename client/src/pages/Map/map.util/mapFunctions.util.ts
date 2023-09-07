@@ -1,3 +1,4 @@
+import hiltonsTechni from "../../../constants/mock/Hilton.mock";
 import View from "./View.enum";
 import LatLang from "./interfaces/LatLang.interface";
 import { center, initZoom } from "./mapConst.util";
@@ -62,13 +63,10 @@ function smoothZoom(
   }
 }
 
-function onHiltonClick(hiltonNumber: Number, basename: string) {
-  console.log(
-    "back will never start the work but imagine getting some data of hilton " +
-      hiltonNumber +
-      " at base : " +
-      basename
-  );
+function getHiltonData(targetHiltonNumber: Number, basename: string) {
+  return hiltonsTechni.filter(
+    ({ hiltonNumber }) => hiltonNumber === targetHiltonNumber
+  )[0];
 }
 
-export { onBaseClick, onHiltonClick, resetPosition };
+export { onBaseClick, getHiltonData, resetPosition };
