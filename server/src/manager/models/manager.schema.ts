@@ -14,7 +14,9 @@ export class Manager {
     @Prop()
     phoneNumber: string;
 
-    @Prop()
+    @Prop({
+        unique: true,
+    })
     personalNumber: string;
 
     @Prop()
