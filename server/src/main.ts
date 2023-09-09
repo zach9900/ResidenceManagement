@@ -6,6 +6,7 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, OpenAPIObject, SwaggerModule } from '@nestjs/swagger';
 import { CourseCommanderModule } from '@modules/courseCommander.module';
 import { BaseModule } from './base';
+import { ValidationPipe } from '@nestjs/common';
 
 // start the develop branch
 // starting the server branch
@@ -165,6 +166,11 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, appDocument, appOptions);
   SwaggerModule.setup('api/courseCommander', app, documentOne);
   SwaggerModule.setup('api/base', app, documentTwo);
+
+  app.useGlobalPipes(new ValidationPipe({
+    transform: true,
+    whitelist: true,
+  }))
 
   await app.listen(process.env.PORT);
 }
