@@ -19,6 +19,9 @@ export class Hilton {
     @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: Floor.name }] })
     floors: Floor[];
 
+    @Prop({
+        unique: true,
+    })
     geoCenter: GeoCoordinate;
 }
 
