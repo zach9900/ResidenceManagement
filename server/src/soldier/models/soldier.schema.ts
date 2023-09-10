@@ -1,41 +1,41 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import mongoose, { Document } from "mongoose";
-import { Courses, Gafs, Genders } from "@utils/enums";
-import { Base, CourseCommander } from "@utils/schemas";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import mongoose, { Document } from 'mongoose';
+import { Courses, Gafs, Genders } from '@utils/enums';
+import { Base, CourseCommander } from '@utils/schemas';
 
 export type SoldierDocument = Soldier & Document;
 
 @Schema()
 export class Soldier {
-    @Prop()
-    firstname: string;
+  @Prop()
+  firstname: string;
 
-    @Prop()
-    lastname: string;
+  @Prop()
+  lastname: string;
 
-    @Prop()
-    gender: Genders;
+  @Prop()
+  gender: Genders;
 
-    @Prop()
-    personalNumber: string;
+  @Prop()
+  personalNumber: string;
 
-    @Prop()
-    course: Courses;
+  @Prop()
+  course: Courses;
 
-    @Prop()
-    gaf: Gafs;
+  @Prop()
+  gaf: Gafs;
 
-    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'CourseCommander' })
-    personalCommander: CourseCommander;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'CourseCommander' })
+  personalCommander: CourseCommander;
 
-    @Prop()
-    hiltonNumber: number;
+  @Prop()
+  hiltonNumber: number;
 
-    @Prop()
-    roomNumber: number;
+  @Prop()
+  roomNumber: number;
 
-    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Base' })
-    base: Base;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Base' })
+  base: Base;
 }
 
 export const SoldierSchema = SchemaFactory.createForClass(Soldier);

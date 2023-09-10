@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose, { Document } from "mongoose";
-import { Commander, Room } from "@utils/schemas";
+import { Commander, GeoCoordinate, Room } from "@utils/schemas";
 
 export type FloorDocument = Floor & Document;
 
@@ -14,6 +14,11 @@ export class Floor {
 
     @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Room' }] })
     rooms: Room[];
+
+    @Prop({
+        unique: true,
+    })
+    geoLocation: GeoCoordinate;
 }
 
 export const FloorSchema = SchemaFactory.createForClass(Floor);
