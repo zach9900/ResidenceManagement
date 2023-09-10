@@ -70,3 +70,24 @@
   align-items: center;
   width: 10vmin;
 }
+
+::-webkit-scrollbar {
+  width: 1.1vmin;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: whitesmoke;
+  border-radius: 5vmin;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5vmin;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
