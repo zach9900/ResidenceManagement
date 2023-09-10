@@ -1,28 +1,39 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { AddBaseDto } from '@utils/add-base.dto';
+import { Base, BaseDocument } from '@utils/base.schema';
 import { GetBaseDto } from '@utils/dtos';
-
-type CreateBaseDto = string;
-type UpdateBaseDto = string;
+import { Model } from 'mongoose';
 
 @Injectable()
 export class BaseService {
-  create(createBaseDto: CreateBaseDto) {
-    return 'This action adds a new base';
+  constructor(@InjectModel(Base.name) private readonly baseModel: Model<BaseDocument>) {}
+
+  async findAll() {
+    return await this.baseModel.find().exec();
   }
 
-  findAll() {
-    return `This action returns all base`;
+  async findOne(getBase: GetBaseDto) {
+    const base = await this.baseModel.findOne(
+      { baseName: getBase.baseName },
+    ).exec();
+    return base;
   }
 
-  findOne(getBase: GetBaseDto) {
-    
+  async create(addBase: AddBaseDto) {
+    const newBase = await new this.baseModel({
+      baseName: addBase.baseName,
+      geoCenter: addBase.geoCenter,
+    });
+
+    return await newBase.save();
   }
 
-  update(id: number, updateBaseDto: UpdateBaseDto) {
+  async updateBaseWithCommander(id: number, updateBaseDto: string) {
     return `This action updates a #${id} base`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} base`;
+  async updateBaseWithHiltons() {
+
   }
 }

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,
@@ -24,7 +25,7 @@
         "src/hilton/mvc/*",
         "src/room/mvc/*",
         "src/soldier/mvc/*",
-        "src/base"
+        "src/base/mvc/*"
       ],
       "@utils/*": [
         "src/utils/*",
@@ -35,8 +36,8 @@
         "src/room/models/*",
         "src/soldier/models/*",
         "src/commander/models/*",
-        "src/manager/models/*",
-      ],
+        "src/manager/models/*"
+      ]
     }
   }
 }

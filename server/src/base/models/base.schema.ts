@@ -6,7 +6,7 @@ export type BaseDocument = Base & Document;
 
 @Schema()
 export class Base {
-    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Commander.name })
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Commander' })
     baseCommander: Commander;
 
     @Prop()
@@ -15,7 +15,7 @@ export class Base {
     @Prop()
     geoCenter: GeoCoordinate;
 
-    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: Hilton.name }] })
+    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Hilton' }] })
     hiltons: Hilton[];
 }
 

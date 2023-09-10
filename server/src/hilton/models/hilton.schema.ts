@@ -7,7 +7,7 @@ export type HiltonDocument = Hilton & Document;
 
 @Schema()
 export class Hilton {
-    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Commander.name })
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Commander' })
     buildingManager: Commander;
 
     @Prop()
@@ -16,7 +16,7 @@ export class Hilton {
     @Prop()
     buildingNumber: number;
 
-    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: Floor.name }] })
+    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Floor' }] })
     floors: Floor[];
 
     @Prop({

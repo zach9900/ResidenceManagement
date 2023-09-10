@@ -15,7 +15,7 @@ export class Room {
     @Prop()
     freeBeds: number;
     
-    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: Soldier.name }] })
+    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Soldier' }] })
     soldiers: Soldier[];
 }
 

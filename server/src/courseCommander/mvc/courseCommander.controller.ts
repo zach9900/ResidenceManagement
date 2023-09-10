@@ -8,7 +8,6 @@ import {
   Put,
 } from '@nestjs/common';
 import { CourseCommanderService } from './courseCommander.service';
-import { CourseCommander } from '../models/courseCommander.dto';
 import {
   ApiCreatedResponse,
   ApiOperation,
@@ -16,8 +15,10 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
+import { CourseCommander } from '@utils/schemas';
+import { CourseCommanderDto } from '@utils/courseCommander.dto';
 
-@ApiTags('courseCommander')
+@ApiTags('Course Commander')
 @Controller('courseCommander')
 export class CourseCommanderController {
   constructor(private readonly courseCommanderService: CourseCommanderService) {
@@ -28,11 +29,11 @@ export class CourseCommanderController {
   @ApiOperation({ summary: 'insert a course commander' })
   @ApiCreatedResponse({
     description: 'course commander created',
-    type: CourseCommander,
+    type: CourseCommanderDto,
   })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   async addCommander(
-    @Body() commander: CourseCommander,
+    @Body() commander: CourseCommanderDto,
   ): Promise<CourseCommander> {
     const res = await this.courseCommanderService.insertCommander(commander);
     return res;
@@ -64,7 +65,7 @@ export class CourseCommanderController {
   @ApiResponse({ status: 200, description: 'Successful operation' })
   async updateOne(
     @Param('personalNumber') personalNumber: string,
-    @Body() updateData: CourseCommander,
+    @Body() updateData: CourseCommanderDto,
   ): Promise<CourseCommander> {
     return this.courseCommanderService.updateOneById(
       personalNumber,

@@ -6,13 +6,13 @@ export type FloorDocument = Floor & Document;
 
 @Schema()
 export class Floor {
-    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Commander.name })
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Commander' })
     floorManager: Commander;
 
     @Prop()
     floorNumber: number;
 
-    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: Room.name }] })
+    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Room' }] })
     rooms: Room[];
 
     @Prop({

@@ -28,10 +28,10 @@ export class CourseCommander {
   @Prop()
   password: string;
 
-  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: Soldier.name }] })
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Soldier' }] })
   soldiers: Soldier[];
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Base.name })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Base' })
   base: Base;
 }
 

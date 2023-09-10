@@ -1,36 +1,36 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { BaseService } from '.';
+import { BaseService } from './base.service';
 import { GetBaseDto } from '@utils/dtos';
+import { ApiTags } from '@nestjs/swagger';
+import { AddBaseDto } from '@utils/add-base.dto';
 
-type CreateBaseDto = string;
-type UpdateBaseDto = string;
-
+@ApiTags('Base')
 @Controller('base')
 export class BaseController {
   constructor(private readonly baseService: BaseService) {}
 
-  @Post()
-  create(@Body() createBaseDto: CreateBaseDto) {
-    return this.baseService.create(createBaseDto);
-  }
-
   @Get('all')
-  findAll() {
-    return this.baseService.findAll();
+  async findAll() {
+    return await this.baseService.findAll();
   }
 
   @Get()
-  findOne(@Body() getBase: GetBaseDto) {
-    return this.baseService.findOne(getBase);
+  async findOne(@Body() getBase: GetBaseDto) {
+    return await this.baseService.findOne(getBase);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBaseDto: UpdateBaseDto) {
-    return this.baseService.update(+id, updateBaseDto);
+  @Post()
+  async create(@Body() addBase: AddBaseDto) {
+    return await this.baseService.create(addBase);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.baseService.remove(+id);
+  @Patch('commander')
+  async updateCommander(@Param('id') id: string, @Body() updateBaseDto: string) {
+    return await this.baseService.updateBaseWithCommander(+id, updateBaseDto);
+  }
+
+  @Patch('hiltons')
+  async updateHiltons() {
+    return await this.baseService.updateBaseWithHiltons();
   }
 }

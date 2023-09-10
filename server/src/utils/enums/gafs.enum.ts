@@ -2,5 +2,7 @@ export enum Gafs {
     SystemsEngineering,
     Avionics,
     KravA,
-    KravB
+    KravB,
+    Lahav,
+    Masoc,
 }

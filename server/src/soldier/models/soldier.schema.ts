@@ -25,7 +25,7 @@ export class Soldier {
   @Prop()
   gaf: Gafs;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: CourseCommander.name })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'CourseCommander' })
   personalCommander: CourseCommander;
 
   @Prop()
@@ -34,7 +34,7 @@ export class Soldier {
   @Prop()
   roomNumber: number;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Base.name })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Base' })
   base: Base;
 }
 
