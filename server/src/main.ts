@@ -7,6 +7,12 @@ import { DocumentBuilder, OpenAPIObject, SwaggerModule } from '@nestjs/swagger';
 import { CourseCommanderModule } from '@modules/courseCommander.module';
 import { BaseModule } from './base';
 import { ValidationPipe } from '@nestjs/common';
+import { CommanderModule } from './commander/mvc/commander.module';
+import { FloorModule } from '@modules/floor.module';
+import { HiltonModule } from '@modules/hilton.module';
+import { ManagerModule } from './manager/mvc/manager.module';
+import { RoomModule } from './room';
+import { SoldierModule } from './soldier';
 
 // start the develop branch
 // starting the server branch
@@ -40,20 +46,57 @@ async function bootstrap() {
     .setTitle('Residence Management')
     .setDescription(appDescreption)
     .build();
-  const optionsOne = new DocumentBuilder().setTitle('Course Commander').build();
-  const optionsTwo = new DocumentBuilder().setTitle('Base').build();
+  const baseOpt = new DocumentBuilder().setTitle('Base').build();
+  const commanderOpt = new DocumentBuilder().setTitle('Commander').build();
+  const courseCommanderOpt = new DocumentBuilder().setTitle('Course Commander').build();
+  const floorOpt = new DocumentBuilder().setTitle('Floor').build();
+  const hiltonOpt = new DocumentBuilder().setTitle('Hilton').build();
+  const managerOpt = new DocumentBuilder().setTitle('Manager').build();
+  const roomOpt = new DocumentBuilder().setTitle('Room').build();
+  const soldierOpt = new DocumentBuilder().setTitle('Soldier').build();
   
-  const documentOne = SwaggerModule.createDocument(app, optionsOne, {
+  const baseDoc = SwaggerModule.createDocument(app, baseOpt, {
+    include: [BaseModule],
+  });
+  const commanderDoc = SwaggerModule.createDocument(app, commanderOpt, {
+    include: [CommanderModule],
+  });
+  const courseCommanderDoc = SwaggerModule.createDocument(app, courseCommanderOpt, {
     include: [CourseCommanderModule],
   });
-  
-  const documentTwo: OpenAPIObject = SwaggerModule.createDocument(app, optionsTwo, {
-    include: [BaseModule],
-  })
+  const floorDoc = SwaggerModule.createDocument(app, floorOpt, {
+    include: [FloorModule],
+  });
+  const hiltonDoc = SwaggerModule.createDocument(app, hiltonOpt, {
+    include: [HiltonModule],
+  });
+  const managerDoc = SwaggerModule.createDocument(app, managerOpt, {
+    include: [ManagerModule],
+  });
+  const roomDoc = SwaggerModule.createDocument(app, roomOpt, {
+    include: [RoomModule],
+  });
+  const soldierDoc = SwaggerModule.createDocument(app, soldierOpt, {
+    include: [SoldierModule],
+  });
   
   const appDocument = SwaggerModule.createDocument(app, {
     ...options,
     tags: [
+      {
+        name: 'Base',
+        externalDocs: {
+          url: 'api/base',
+          description: 'The Base API'
+        }
+      },
+      {
+        name: 'Commander',
+        externalDocs: {
+          url: 'api/commander',
+          description: 'The Commander API'
+        }
+      },
       {
         name: 'Course Commander',
         externalDocs: {
@@ -62,10 +105,38 @@ async function bootstrap() {
         }
       },
       {
-        name: 'Base',
+        name: 'Floor',
         externalDocs: {
-          url: 'api/base',
-          description: 'The Base API'
+          url: 'api/floor',
+          description: 'The Floor API'
+        }
+      },
+      {
+        name: 'Hilton',
+        externalDocs: {
+          url: 'api/hilton',
+          description: 'The Hilton API'
+        }
+      },
+      {
+        name: 'Manager',
+        externalDocs: {
+          url: 'api/manager',
+          description: 'The Manager API'
+        }
+      },
+      {
+        name: 'Room',
+        externalDocs: {
+          url: 'api/room',
+          description: 'The Room API'
+        }
+      },
+      {
+        name: 'Soldier',
+        externalDocs: {
+          url: 'api/soldier',
+          description: 'The Soldier API'
         }
       }
     ]
@@ -164,8 +235,14 @@ async function bootstrap() {
   }
 
   SwaggerModule.setup('api', app, appDocument, appOptions);
-  SwaggerModule.setup('api/courseCommander', app, documentOne);
-  SwaggerModule.setup('api/base', app, documentTwo);
+  SwaggerModule.setup('api/base', app, baseDoc);
+  SwaggerModule.setup('api/commander', app, commanderDoc);
+  SwaggerModule.setup('api/courseCommander', app, courseCommanderDoc);
+  SwaggerModule.setup('api/floor', app, floorDoc);
+  SwaggerModule.setup('api/hilton', app, hiltonDoc);
+  SwaggerModule.setup('api/manager', app, managerDoc);
+  SwaggerModule.setup('api/room', app, roomDoc);
+  SwaggerModule.setup('api/soldier', app, soldierDoc);
 
   app.useGlobalPipes(new ValidationPipe({
     transform: true,
