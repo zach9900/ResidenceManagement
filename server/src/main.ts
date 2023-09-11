@@ -98,7 +98,7 @@ async function bootstrap() {
       }
     `,
     customJsStr: '\n\
-      window.onchange = window.onload = function() {\n\
+      window.onpageshow = window.onload = function() {\n\
         const CaseInsensitiveFilterPlugin = function (system) {\n\
           return {\n\
             fn: {\n\
@@ -126,7 +126,7 @@ async function bootstrap() {
           showModels = 1;\n\
         }\n\
         \n\
-        let configObject = JSON.parse(`{"urls":[{"url":"/api-yaml","name":"Main Menu"}, {"url":"/api/courseCommander-yaml","name":"Course Commander API"}, {"url":"/api/base-yaml","name":"Base API"}], "docExpansion": "list", "filter": true, "defaultModelsExpandDepth": ${showModels}, "deepLinking": true}`);\n\
+        let configObject = JSON.parse(`{"urls":[{"url":"/api-yaml","name":"Main Menu"}, {"url":"/api/base-yaml","name":"Base API"}, {"url":"/api/commander-yaml","name":"Commander API"}, {"url":"/api/courseCommander-yaml","name":"Course Commander API"}, {"url":"/api/floor-yaml","name":"Floor API"}, {"url":"/api/hilton-yaml","name":"Hilton API"}, {"url":"/api/manager-yaml","name":"Manager API"}, {"url":"/api/room-yaml","name":"Room API"}, {"url":"/api/soldier-yaml","name":"Soldier API"}], "docExpansion": "list", "filter": true, "defaultModelsExpandDepth": ${showModels}, "deepLinking": true}`);\n\
         \n\
         configObject.dom_id = "#swagger-ui";\n\
         configObject.presets = [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset];\n\
