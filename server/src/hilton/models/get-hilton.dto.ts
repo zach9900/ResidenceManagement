@@ -6,6 +6,7 @@ import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 @ApiSchema({ name: 'GetHilton' })
 export class GetHiltonDto {
     @ApiProperty({
+        type: () => GeoCoordinateDto,
         description: "The geographical coordinates of the Hilton",
         example: {
             latitude: 31.25,

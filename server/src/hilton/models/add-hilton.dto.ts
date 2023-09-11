@@ -29,6 +29,7 @@ export class AddHiltonDto {
     buildingManager: Commander; // TODO: change to Commander DTO*/
 
     @ApiProperty({
+        type: () => GeoCoordinateDto,
         description: "The geographical coordinates of the Hilton",
         example: {
             latitude: 31.25,
