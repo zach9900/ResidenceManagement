@@ -12,5 +12,6 @@ import { CourseCommanderSchema } from '../models/courseCommander.schema';
   ],
   controllers: [CourseCommanderController],
   providers: [CourseCommanderService],
+  exports: [CourseCommanderService]
 })
 export class CourseCommanderModule {}

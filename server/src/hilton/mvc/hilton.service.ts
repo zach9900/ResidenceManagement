@@ -7,13 +7,15 @@ import { GeoCoordinateDto, GetHiltonDto } from '@utils/dtos';
 import { FloorService } from '@modules/floor.service';
 import { AddFloorDto } from '@utils/add-floor.dto';
 import { FloorDocument } from '@utils/floor.schema';
+import { CommanderService } from 'src/commander/mvc/commander.service';
+import { BuildingManagerDto } from '@utils/building-manager.dto';
 
 @Injectable()
 export class HiltonService {
     constructor(
+        @InjectModel(Hilton.name) private readonly hiltonModel: Model<HiltonDocument>,
         private readonly floorService: FloorService,
         private readonly commanderService: CommanderService,
-        @InjectModel(Hilton.name) private readonly hiltonModel: Model<Hilton>,
     ) {}
     
     async getHilton(hilton: GetHiltonDto) {
@@ -28,7 +30,7 @@ export class HiltonService {
         const newHilton = new this.hiltonModel({
             allowedGender: hilton.allowedGender,
             buildingNumber: hilton.buildingNumber,
-            geoCenter: hilton.geoCenter
+            geoCenter: hilton.geoCenter,
         });
 
         return await newHilton.save();

@@ -1,19 +1,22 @@
+import { RoomService } from '@modules/room.service';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { AddFloorDto } from '@utils/add-floor.dto';
 import { GeoCoordinateDto } from '@utils/dtos';
+import { FloorManagerDto } from '@utils/floor-manager.dto';
 import { Floor, FloorDocument } from '@utils/floor.schema';
 import { GetFloorDto } from '@utils/get-floor.dto';
 import { HiltonDocument } from '@utils/hilton.schema';
 import { RoomDocument } from '@utils/room.schema';
 import { Model } from 'mongoose';
+import { CommanderService } from 'src/commander/mvc/commander.service';
 
 @Injectable()
 export class FloorService {
     constructor(
         private readonly roomService: RoomService,
         private readonly commanderService: CommanderService,
-        @InjectModel(Floor.name) private readonly floorModel: Model<Floor>,
+        @InjectModel(Floor.name) private readonly floorModel: Model<FloorDocument>,
     ) {}
 
     async getFloor(floor: GetFloorDto) {
@@ -50,7 +53,7 @@ export class FloorService {
         return await newFloor.save();
     }
 
-    async updateHiltonWithManager(floorLocation: GeoCoordinateDto, floorManager: FloorManagerDto) {
+    async updateFloorWithManager(floorLocation: GeoCoordinateDto, floorManager: FloorManagerDto) {
         const floorToUpdate = await this.floorModel.findOne(
             { geoLocation: floorLocation }
         ).exec();

@@ -1,19 +1,30 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Room } from '@utils/room.schema';
+import { Room, RoomDocument } from '@utils/room.schema';
 import { Soldier } from '@utils/soldier.schema';
 import { SoldierService } from '@modules/soldier.service';
 import { UpdateSoldierWithRoomDto } from '@utils/UpdateSoldierWithRoomDto.dto';
 import { UpdateSoldierDto } from '@utils/updateSoldier.dto';
+import { AddRoomDto } from '@utils/add-room.dto';
 
 @Injectable()
 export class RoomService {
   constructor(
     @InjectModel('Room')
-    private readonly roomModel: Model<Room>,
+    private readonly roomModel: Model<RoomDocument>,
     private readonly soldierService: SoldierService,
   ) {}
+
+  async createRoom(newRoom: AddRoomDto) {
+    const newRoomDoc = new this.roomModel({
+      roomNumber: newRoom.roomNumber,
+      bedsNumber: newRoom.bedsNumber,
+      freeBeds: newRoom.bedsNumber,
+    });
+
+    return await newRoomDoc.save();
+  }
 
   async addSoldierToRoom(updateDto: UpdateSoldierDto): Promise<Room> {
     const Room = await this.findRoomByNumber(updateDto.roomNumber);

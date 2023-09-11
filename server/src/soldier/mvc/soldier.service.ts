@@ -2,12 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Room } from '@utils/room.schema';
-import { Soldier } from '@utils/soldier.schema';
+import { Soldier, SoldierDocument } from '@utils/soldier.schema';
 import { Commander } from '@utils/commander.schema';
 import { CourseCommander } from '@utils/schemas';
 import { CourseCommanderService } from '@modules/courseCommander.service';
 import { AddSoldierDto } from '@utils/dtos/registerSoldier.dto';
-import { BaseService } from '@modules/*';
+import { BaseService } from '@modules/base.service';
 import { UpdateSoldierWithHiltonDto } from '@utils/updateSoldierWithHiltonDto.dto';
 import { UpdateSoldierWithRoomDto } from '@utils/UpdateSoldierWithRoomDto.dto';
 import { UpdateSoldierWithCommanderDto } from '@utils/updateSoldierWithCommander.dto';
@@ -16,7 +16,7 @@ import { UpdateSoldierWithCommanderDto } from '@utils/updateSoldierWithCommander
 export class SoldierService {
   constructor(
     @InjectModel('Soldier')
-    private readonly soldierModel: Model<Soldier>,
+    private readonly soldierModel: Model<SoldierDocument>,
     private readonly courseCommanderService: CourseCommanderService,
     private readonly baseService: BaseService,
   ) {}

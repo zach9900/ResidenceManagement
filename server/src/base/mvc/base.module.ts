@@ -8,5 +8,6 @@ import { Base, BaseSchema } from '@utils/base.schema';
   imports: [MongooseModule.forFeature([{ name: Base.name, schema: BaseSchema }])],
   controllers: [BaseController],
   providers: [BaseService],
+  exports: [BaseService],
 })
 export class BaseModule {}

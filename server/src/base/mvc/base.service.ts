@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { AddBaseDto } from '@utils/add-base.dto';
 import { Base, BaseDocument } from '@utils/base.schema';
 import { GetBaseDto } from '@utils/dtos';
+import { Bases } from '@utils/enums/bases.enum';
 import { Model } from 'mongoose';
 
 @Injectable()
@@ -16,6 +17,13 @@ export class BaseService {
   async findOne(getBase: GetBaseDto) {
     const base = await this.baseModel.findOne(
       { baseName: getBase.baseName },
+    ).exec();
+    return base;
+  }
+
+  async findBase(getBase: Bases) {
+    const base = await this.baseModel.findOne(
+      { baseName: getBase },
     ).exec();
     return base;
   }

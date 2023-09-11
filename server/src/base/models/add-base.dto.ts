@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { ApiSchema } from "@utils/decorators";
+import { GeoCoordinateDto } from "@utils/dtos";
 import { IsNotEmpty, IsString } from "class-validator";
 
 @ApiSchema({ name: 'AddBase' })

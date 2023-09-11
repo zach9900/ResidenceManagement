@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CourseCommanderDto } from '@utils/dtos';
-import { CourseCommander } from '@utils/schemas';
+import { CourseCommander, CourseCommanderDocument } from '@utils/schemas';
 import { Model } from 'mongoose';
 
 @Injectable()
 export class CourseCommanderService {
   constructor(
     @InjectModel('CourseCommander')
-    private readonly courseCommanderModel: Model<CourseCommander>,
+    private readonly courseCommanderModel: Model<CourseCommanderDocument>,
   ) {}
 
   async insertCommander(
