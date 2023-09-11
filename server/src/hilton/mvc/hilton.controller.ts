@@ -4,6 +4,8 @@ import { GetHiltonDto } from '@utils/get-hilton.dto';
 import { AddHiltonDto } from '../models/add-hilton.dto';
 import { GeoCoordinateDto } from '@utils/dtos';
 import { ApiTags } from '@nestjs/swagger';
+import { AddFloorDto } from '@utils/add-floor.dto';
+import { BuildingManagerDto } from '@utils/building-manager.dto';
 
 @ApiTags('Hilton')
 @Controller('hilton')
@@ -21,7 +23,7 @@ export class HiltonController {
     }
 
     @Patch('add-floors')
-    async updateHiltonWithFloors(@Body() buildingLocation: GeoCoordinateDto, @Body() floors: FloorDto[]) {
+    async updateHiltonWithFloors(@Body() buildingLocation: GeoCoordinateDto, @Body() floors: AddFloorDto[]) {
         return await this.hiltonService.updateHiltonWithFloors(buildingLocation, floors);
     }
 
