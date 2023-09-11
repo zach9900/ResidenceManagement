@@ -10,13 +10,13 @@ export class AddSoldierDto {
     description: 'The first name of the soldier',
     example: 'ron',
   })
-  firstName: String;
+  firstName: string;
 
   @ApiProperty({
     description: 'The last name of the soldier',
     example: 'shtar',
   })
-  lastName: String;
+  lastName: string;
 
   @ApiProperty({
     description: 'The gender of the soldier',

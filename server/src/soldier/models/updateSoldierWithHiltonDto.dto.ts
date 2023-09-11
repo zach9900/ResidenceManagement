@@ -7,7 +7,7 @@ export class UpdateSoldierWithHiltonDto {
     description: 'The personal number of the soldier we want to update',
     example: '9139490',
   })
-  soldierPersonalNumber: String;
+  soldierPersonalNumber: string;
 
   @ApiProperty({
     description: 'The number of the hilton we want to update the soldier with',

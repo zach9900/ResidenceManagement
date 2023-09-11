@@ -10,13 +10,13 @@ export class AddCommanderDto {
     description: 'The first name of the commander',
     example: 'haim',
   })
-  firstName: String;
+  firstName: string;
 
   @ApiProperty({
     description: 'The last name of the commander',
     example: 'davidov',
   })
-  lastName: String;
+  lastName: string;
 
   @ApiProperty({
     description: 'The gender of the commander',
