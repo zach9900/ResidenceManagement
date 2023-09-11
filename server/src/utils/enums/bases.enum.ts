@@ -1,5 +1,5 @@
 export enum Bases {
-  TECHNI,
-  OVDA,
-  TELNOF,
+  TECHNI = 'Techni',
+  OVDA = 'Ovda',
+  TELNOF = 'Tel-Nof',
 }
