@@ -64,9 +64,11 @@ function smoothZoom(
 }
 
 function getHiltonData(targetHiltonNumber: Number, basename: string) {
-  return hiltonsTechni.filter(
-    ({ hiltonNumber }) => hiltonNumber === targetHiltonNumber
-  )[0];
+  return (
+    hiltonsTechni.filter(
+      ({ hiltonNumber }) => hiltonNumber === targetHiltonNumber
+    )[0] ?? hiltonsTechni[0]
+  );
 }
 
 export { onBaseClick, getHiltonData, resetPosition };
