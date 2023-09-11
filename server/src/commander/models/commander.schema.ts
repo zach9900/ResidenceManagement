@@ -13,7 +13,7 @@ export class Commander {
     lastName: string;
 
     @Prop()
-    gender: Genders
+    gender: Genders;
 
     @Prop()
     personalNumber: string;
